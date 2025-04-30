@@ -1,5 +1,5 @@
 MODEL (
-	name vocabulary.domain_seed,
+	name vocabulary.domain,
 	kind SEED (
 		path '$root/seeds/vocabulary/domain_seed.csv'
 	),

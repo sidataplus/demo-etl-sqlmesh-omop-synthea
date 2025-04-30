@@ -71,3 +71,78 @@ MODEL (
 4. Generate the rest of SQL models for all seed files. *This may seems laborious in this demo, but, in production, we usually add new data table one by one not all tables at once like this.*
 5. Run `sqlmesh plan dev` to apply local changes to the target environment. Once you're happy with the changes, you can run `sqlmesh plan` to apply the changes to the production environment in the same DuckDB instance.
 
+### Part 3: Staging models
+
+In this part, we will create staging models to transform the data from the seed models to the final models. The staging models will be used to clean and prepare the data for the final models. We will take the example scripts from the [dbt-synthea](https://github.com/OHDSI/dbt-synthea/blob/main/models/staging/synthea/stg_synthea__allergies.sql) and convert them to SQLMesh models.
+
+1. Create a new file `models/staging/synthea/stg_synthea__allergies.sql` with the following content :
+
+```sql
+MODEL (
+ name stg.synthea__allergies,
+ description "Synthea allergies table",
+ kind VIEW,
+ columns (
+  allergy_start_date date,
+  allergy_stop_date date,
+  patient_id varchar,
+  encounter_id varchar,
+  allergy_code varchar,
+  allergy_code_system varchar,
+  allergy_description varchar,
+  allergy_type varchar,
+  allergy_category varchar,
+  reaction_1_code varchar,
+  reaction_1_description varchar,
+  reaction_1_severity varchar,
+  reaction_2_code varchar,
+  reaction_2_description varchar,
+  reaction_2_severity varchar
+ ),
+ column_descriptions (
+  allergy_start_date = 'The date the allergy was diagnosed.',
+  allergy_stop_date = 'The date the allergy ended, if applicable.',
+  patient_id = 'The patient ID.',
+  encounter_id = 'The encounter ID.',
+  allergy_code = 'The allergy code.',
+  allergy_code_system = 'The allergy code system.',
+  allergy_description = 'The allergy description.',
+  allergy_type = 'Identify entry as an allergy or intolerance.',
+  allergy_category = 'Identify the allergy category as drug, medication, food, or environment.',
+  reaction_1_code = "Optional SNOMED code of the patient's reaction.",
+  reaction_1_description = 'Optional description of the Reaction1 SNOMED code.',
+  reaction_1_severity = 'Severity of the reaction: MILD, MODERATE, or SEVERE.',
+  reaction_2_code = "Optional SNOMED code of the patient's second reaction.",
+  reaction_2_description = 'Optional description of the Reaction2 SNOMED code.',
+  reaction_2_severity = 'Severity of the second reaction: MILD, MODERATE, or SEVERE.'
+ )
+);
+
+SELECT 
+ START as allergy_start_date,
+ STOP as allergy_stop_date,
+ PATIENT as patient_id,
+ ENCOUNTER as encounter_id,
+ CODE as allergy_code,
+ SYSTEM as allergy_code_system,
+ DESCRIPTION as allergy_description,
+ TYPE as allergy_type,
+ CATEGORY as allergy_category,
+ REACTION1 as reaction_1_code,
+ DESCRIPTION1 as reaction_1_description,
+ SEVERITY1 as reaction_1_severity,
+ REACTION2 as reaction_2_code,
+ DESCRIPTION2 as reaction_2_description,
+ SEVERITY2 as reaction_2_severity
+FROM synthea.allergies;
+```
+
+Explanation of the code:
+
+- `MODEL` block: This block defines the model name, description, kind, columns, and column descriptions.
+  - The `kind` is set to `VIEW`, which means that the model will created as a view in database.
+  - SQLMesh supports other kinds including `FULL` (table), `INCREMENTAL_BY_TIME_RANGE`, `INCREMENTAL_BY_UNIQUE_KEY`, and etc. Incremental load is preferred for large transformation Please refer to the [SQLMesh documentation: Model kinds](https://sqlmesh.readthedocs.io/en/stable/concepts/models/model_kinds/) for more information.
+- The `SELECT` statement is used to select the columns from the `synthea.allergies` table and rename them to match the column names in the staging model. The `AS` keyword is used to rename the columns.
+  - Unlike dbt, SQLMesh does not need {{ ref() }} function to refer to other models. You can use the model name directly in the SQL statement.
+
+2. We can run `sqlmesh plan dev` like earlier to apply local changes to the target environment, or use `sqlmesh ui` to interactively check the changes and apply them via the web UI.

@@ -1,5 +1,5 @@
 MODEL (
-	name vocabulary.relationship_seed,
+	name vocabulary.relationship,
 	kind SEED (
 		path '$root/seeds/vocabulary/relationship_seed.csv'
 	),
