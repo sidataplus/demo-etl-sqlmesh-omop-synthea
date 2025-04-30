@@ -1,0 +1,41 @@
+MODEL (
+	name synthea.claims_transactions,
+	kind SEED (
+		path '$root/seeds/synthea/claims_transactions.csv'
+	),
+	columns (
+		Id varchar,
+		CLAIMID varchar,
+		CHARGEID integer,
+		PATIENTID varchar,
+		TYPE varchar,
+		AMOUNT float,
+		METHOD varchar,
+		FROMDATE timestamp,
+		TODATE timestamp,
+		PLACEOFSERVICE varchar,
+		PROCEDURECODE varchar,
+		MODIFIER1 varchar,
+		MODIFIER2 varchar,
+		DIAGNOSISREF1 integer,
+		DIAGNOSISREF2 integer,
+		DIAGNOSISREF3 integer,
+		DIAGNOSISREF4 integer,
+		UNITS integer,
+		DEPARTMENTID integer,
+		NOTES varchar,
+		UNITAMOUNT float,
+		TRANSFEROUTID integer,
+		TRANSFERTYPE varchar,
+		PAYMENTS float,
+		ADJUSTMENTS float,
+		TRANSFERS float,
+		OUTSTANDING float,
+		APPOINTMENTID varchar,
+		LINENOTE varchar,
+		PATIENTINSURANCEID varchar,
+		FEESCHEDULEID integer,
+		PROVIDERID varchar,
+		SUPERVISINGPROVIDERID varchar
+	)
+);
