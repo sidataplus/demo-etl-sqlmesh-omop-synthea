@@ -2,11 +2,13 @@
 
 Quickstart demo to show how to use SQLMesh to ETL Synthea data to OMOP CDM.
 
+NOTICE: This demo heavily reuses code from [dbt-synthea](https://github.com/OHDSI/dbt-synthea) licensed under Apache-2.0 license.
+
 Please refer to more information at these links:
 
 - OHDSI APAC 2024 Poster titled [From dbt to SQLMesh: Enhancing OMOP CDM Data Conversion Efficiency](https://www.ohdsi.org/wp-content/uploads/2025/01/20_Nongnaphat-Wongpiyachai_From-dbt-to-SQLMesh.pdf) by Nongnaphat Wongpiyachai, Chinapat Onprasert, Sornchai Manosorn, Natthawut Adulyanukosol
 - <https://github.com/sidataplus/demo-etl-sqlmesh-omop>
-- <https://github.com/OHDSI/ETL-Synthea> & <https://github.com/OHDSI/dbt-synthea>
+- <https://github.com/OHDSI/ETL-Synthea>
 - <https://sqlmesh.com> & <https://sqlmesh.readthedocs.io/en/stable/>
 
 ## Prerequisites
