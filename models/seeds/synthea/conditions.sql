@@ -1,14 +1,14 @@
 MODEL (
-	name synthea.conditions,
-	kind SEED (
-		path '$root/seeds/synthea/conditions.csv'
-	),
-	columns (
-		START date,
-		STOP date,
-		PATIENT varchar,
-		ENCOUNTER varchar,
-		CODE varchar,
-		DESCRIPTION varchar
-	)
-);
+  name synthea.conditions,
+  kind SEED (
+    path '$root/seeds/synthea/conditions.csv'
+  ),
+  columns (
+    START DATE,
+    STOP DATE,
+    PATIENT TEXT,
+    ENCOUNTER TEXT,
+    CODE TEXT,
+    DESCRIPTION TEXT
+  )
+)

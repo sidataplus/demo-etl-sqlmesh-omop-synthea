@@ -3,5 +3,6 @@ MODEL (
   kind FULL
 );
 
-SELECT *
+SELECT
+  *
 FROM stg.vocabulary__relationship

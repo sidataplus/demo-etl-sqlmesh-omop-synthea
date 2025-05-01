@@ -8,17 +8,12 @@ MODEL (
     min_levels_of_separation INT,
     max_levels_of_separation INT
   ),
-  column_descriptions (
-    ancestor_concept_id = 'The Concept Id for the higher-level concept that forms the ancestor in the relationship.',
-    descendant_concept_id = 'The Concept Id for the lower-level concept that forms the descendant in the relationship.',
-    min_levels_of_separation = 'The minimum number of levels separating the ancestor and descendant concepts.',
-    max_levels_of_separation = 'The maximum number of levels separating the ancestor and descendant concepts.'
-  )
+  column_descriptions (ancestor_concept_id = 'The Concept Id for the higher-level concept that forms the ancestor in the relationship.', descendant_concept_id = 'The Concept Id for the lower-level concept that forms the descendant in the relationship.', min_levels_of_separation = 'The minimum number of levels separating the ancestor and descendant concepts.', max_levels_of_separation = 'The maximum number of levels separating the ancestor and descendant concepts.')
 );
 
 SELECT
-    ancestor_concept_id::INT,
-    descendant_concept_id::INT,
-    min_levels_of_separation::INT,
-    max_levels_of_separation::INT
+  ancestor_concept_id::INT,
+  descendant_concept_id::INT,
+  min_levels_of_separation::INT,
+  max_levels_of_separation::INT
 FROM stg.vocabulary__concept_ancestor

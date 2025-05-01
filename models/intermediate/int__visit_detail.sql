@@ -1,35 +1,34 @@
 MODEL (
-    name int.visit_detail,
-    description "Intermediate visit detail model, linking encounters to visits",
-    kind FULL,
-    columns (
-        visit_detail_id BIGINT,
-        encounter_id VARCHAR,
-        person_id BIGINT,
-        visit_detail_concept_id INT,
-        visit_detail_start_date DATE,
-        visit_detail_start_datetime TIMESTAMP,
-        visit_detail_end_date DATE,
-        visit_detail_end_datetime TIMESTAMP,
-        visit_detail_type_concept_id INT,
-        provider_id BIGINT,
-        care_site_id INT,
-        admitted_from_concept_id INT,
-        discharged_to_concept_id INT,
-        preceding_visit_detail_id INT,
-        visit_detail_source_value VARCHAR,
-        visit_detail_source_concept_id INT,
-        admitted_from_source_value VARCHAR,
-        discharged_to_source_value VARCHAR,
-        parent_visit_detail_id INT,
-        visit_occurrence_id BIGINT,
-        total_encounter_cost NUMERIC,
-        encounter_payer_coverage NUMERIC
-    )
+  name int.visit_detail,
+  description "Intermediate visit detail model, linking encounters to visits",
+  kind FULL,
+  columns (
+    visit_detail_id BIGINT,
+    encounter_id TEXT,
+    person_id BIGINT,
+    visit_detail_concept_id INT,
+    visit_detail_start_date DATE,
+    visit_detail_start_datetime TIMESTAMP,
+    visit_detail_end_date DATE,
+    visit_detail_end_datetime TIMESTAMP,
+    visit_detail_type_concept_id INT,
+    provider_id BIGINT,
+    care_site_id INT,
+    admitted_from_concept_id INT,
+    discharged_to_concept_id INT,
+    preceding_visit_detail_id INT,
+    visit_detail_source_value TEXT,
+    visit_detail_source_concept_id INT,
+    admitted_from_source_value TEXT,
+    discharged_to_source_value TEXT,
+    parent_visit_detail_id INT,
+    visit_occurrence_id BIGINT,
+    total_encounter_cost DECIMAL(18, 3),
+    encounter_payer_coverage DECIMAL(18, 3)
+  )
 );
 
 JINJA_QUERY_BEGIN;
-
 SELECT
     row_number() OVER (ORDER BY e.encounter_id) AS visit_detail_id
     , e.encounter_id
@@ -63,5 +62,4 @@ INNER JOIN int.visits AS v
     ON ve.visit_id = v.visit_id
 INNER JOIN int.encounters AS e
     ON ve.encounter_id = e.encounter_id
-
 JINJA_END;

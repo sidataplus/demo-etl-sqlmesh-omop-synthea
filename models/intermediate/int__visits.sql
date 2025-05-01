@@ -1,15 +1,15 @@
 MODEL (
-    name int.visits,
-    description "Assigns a unique visit_occurrence_id to each distinct visit",
-    kind FULL,
-    columns (
-        visit_occurrence_id BIGINT,
-        visit_id VARCHAR, -- Changed from BIGINT to VARCHAR to accommodate different visit_id types
-        person_id BIGINT,
-        visit_class VARCHAR,
-        visit_start_date DATE,
-        visit_end_date DATE
-    )
+  name int.visits,
+  description "Assigns a unique visit_occurrence_id to each distinct visit",
+  kind FULL,
+  columns (
+    visit_occurrence_id BIGINT,
+    visit_id TEXT, /* Changed from BIGINT to VARCHAR to accommodate different visit_id types */
+    person_id BIGINT,
+    visit_class TEXT,
+    visit_start_date DATE,
+    visit_end_date DATE
+  )
 );
 
 JINJA_QUERY_BEGIN;
@@ -43,5 +43,4 @@ SELECT
     ROW_NUMBER() OVER (ORDER BY person_id, visit_start_date, visit_id) AS visit_occurrence_id
     , *
 FROM all_visits
-
 JINJA_END;

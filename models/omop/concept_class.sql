@@ -5,7 +5,7 @@ MODEL (
 );
 
 SELECT
-    concept_class_id::VARCHAR(20),
-    concept_class_name::VARCHAR(255),
-    concept_class_concept_id::INT
+  concept_class_id::TEXT,
+  concept_class_name::TEXT,
+  concept_class_concept_id::INT
 FROM stg.vocabulary__concept_class

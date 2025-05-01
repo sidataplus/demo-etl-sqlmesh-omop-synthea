@@ -1,31 +1,30 @@
 MODEL (
-    name int.person,
-    description "Intermediate person model with mapped concept IDs and location ID",
-    kind FULL,
-    columns (
-        person_id BIGINT,
-        gender_concept_id INT,
-        year_of_birth INT,
-        month_of_birth INT,
-        day_of_birth INT,
-        birth_datetime TIMESTAMP,
-        race_concept_id INT,
-        ethnicity_concept_id INT,
-        location_id INT,
-        provider_id INT,
-        care_site_id INT,
-        person_source_value VARCHAR,
-        gender_source_value VARCHAR,
-        gender_source_concept_id INT,
-        race_source_value VARCHAR,
-        race_source_concept_id INT,
-        ethnicity_source_value VARCHAR,
-        ethnicity_source_concept_id INT
-    )
+  name int.person,
+  description "Intermediate person model with mapped concept IDs and location ID",
+  kind FULL,
+  columns (
+    person_id BIGINT,
+    gender_concept_id INT,
+    year_of_birth INT,
+    month_of_birth INT,
+    day_of_birth INT,
+    birth_datetime TIMESTAMP,
+    race_concept_id INT,
+    ethnicity_concept_id INT,
+    location_id INT,
+    provider_id INT,
+    care_site_id INT,
+    person_source_value TEXT,
+    gender_source_value TEXT,
+    gender_source_concept_id INT,
+    race_source_value TEXT,
+    race_source_concept_id INT,
+    ethnicity_source_value TEXT,
+    ethnicity_source_concept_id INT
+  )
 );
 
 JINJA_QUERY_BEGIN;
-
 {% set address_columns = [
     "p.patient_address",
     "p.patient_city",
@@ -70,5 +69,4 @@ FROM stg.synthea__patients AS p
 LEFT JOIN stg.map__states AS s ON p.patient_state = s.state_name
 LEFT JOIN int.location AS loc
     ON loc.location_source_value = {{ safe_hash(address_columns) }}
-
 JINJA_END;

@@ -1,33 +1,33 @@
 MODEL (
-	name synthea.patients,
-	kind SEED (
-		path '$root/seeds/synthea/patients.csv'
-	),
-	columns (
-		Id varchar,
-		BIRTHDATE date,
-		DEATHDATE date,
-		SSN varchar,
-		DRIVERS varchar,
-		PASSPORT varchar,
-		PREFIX varchar,
-		FIRST varchar,
-		LAST varchar,
-		SUFFIX varchar,
-		MAIDEN varchar,
-		MARITAL varchar,
-		RACE varchar,
-		ETHNICITY varchar,
-		GENDER varchar,
-		BIRTHPLACE varchar,
-		ADDRESS varchar,
-		CITY varchar,
-		STATE varchar,
-		COUNTY varchar,
-		ZIP varchar,
-		LAT float,
-		LON float,
-		HEALTHCARE_EXPENSES float,
-		HEALTHCARE_COVERAGE float
-	)
-);
+  name synthea.patients,
+  kind SEED (
+    path '$root/seeds/synthea/patients.csv'
+  ),
+  columns (
+    Id TEXT,
+    BIRTHDATE DATE,
+    DEATHDATE DATE,
+    SSN TEXT,
+    DRIVERS TEXT,
+    PASSPORT TEXT,
+    PREFIX TEXT,
+    FIRST TEXT,
+    LAST TEXT,
+    SUFFIX TEXT,
+    MAIDEN TEXT,
+    MARITAL TEXT,
+    RACE TEXT,
+    ETHNICITY TEXT,
+    GENDER TEXT,
+    BIRTHPLACE TEXT,
+    ADDRESS TEXT,
+    CITY TEXT,
+    STATE TEXT,
+    COUNTY TEXT,
+    ZIP TEXT,
+    LAT REAL,
+    LON REAL,
+    HEALTHCARE_EXPENSES REAL,
+    HEALTHCARE_COVERAGE REAL
+  )
+)

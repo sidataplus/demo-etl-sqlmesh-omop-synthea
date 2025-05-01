@@ -1,29 +1,28 @@
 MODEL (
-    name int.encounters,
-    description "Intermediate encounters model, joining staging encounters with person and provider IDs, removing duplicates",
-    kind FULL,
-    columns (
-        encounter_id VARCHAR,
-        encounter_start_datetime TIMESTAMP,
-        encounter_start_date DATE,
-        encounter_stop_datetime TIMESTAMP,
-        encounter_stop_date DATE,
-        person_id BIGINT,
-        provider_id BIGINT,
-        payer_id VARCHAR,
-        encounter_class VARCHAR,
-        encounter_code VARCHAR,
-        encounter_description VARCHAR,
-        base_encounter_cost NUMERIC,
-        total_encounter_cost NUMERIC,
-        encounter_payer_coverage NUMERIC,
-        encounter_reason_code VARCHAR,
-        encounter_reason_description VARCHAR
-    )
+  name int.encounters,
+  description "Intermediate encounters model, joining staging encounters with person and provider IDs, removing duplicates",
+  kind FULL,
+  columns (
+    encounter_id TEXT,
+    encounter_start_datetime TIMESTAMP,
+    encounter_start_date DATE,
+    encounter_stop_datetime TIMESTAMP,
+    encounter_stop_date DATE,
+    person_id BIGINT,
+    provider_id BIGINT,
+    payer_id TEXT,
+    encounter_class TEXT,
+    encounter_code TEXT,
+    encounter_description TEXT,
+    base_encounter_cost DECIMAL(18, 3),
+    total_encounter_cost DECIMAL(18, 3),
+    encounter_payer_coverage DECIMAL(18, 3),
+    encounter_reason_code TEXT,
+    encounter_reason_description TEXT
+  )
 );
 
 JINJA_QUERY_BEGIN;
-
 WITH cte_dupes AS (
     /*
     some encounter IDs are duplicated due to a bug in the Synthea data generation process.
@@ -60,5 +59,4 @@ INNER JOIN int.person AS p
 LEFT JOIN int.provider AS pr
     ON e.provider_id = pr.provider_source_value
 WHERE cte_dupes.dupe_encounter_id IS NULL
-
 JINJA_END;

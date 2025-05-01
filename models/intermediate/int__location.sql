@@ -1,20 +1,19 @@
 MODEL (
-	name int.location,
-	description "Location table",
-	kind FULL,
-	columns (
-		location_id int,
-		address_1 varchar,
-		city varchar,
-		state varchar,
-		zip varchar,
-		county varchar,
-		location_source_value varchar
-	)
+  name int.location,
+  description "Location table",
+  kind FULL,
+  columns (
+    location_id INT,
+    address_1 TEXT,
+    city TEXT,
+    state TEXT,
+    zip TEXT,
+    county TEXT,
+    location_source_value TEXT
+  )
 );
 
 JINJA_QUERY_BEGIN;
-
 {% set address_columns = [
     "address_1", 
     "city",
@@ -54,5 +53,4 @@ SELECT
 	, county
 	, {{ safe_hash(address_columns) }} AS location_source_value
 FROM unioned_location_sources
-
 JINJA_END;

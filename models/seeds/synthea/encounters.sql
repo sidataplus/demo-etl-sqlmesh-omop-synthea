@@ -1,23 +1,23 @@
 MODEL (
-	name synthea.encounters,
-	kind SEED (
-		path '$root/seeds/synthea/encounters.csv'
-	),
-	columns (
-		Id varchar,
-		START timestamp,
-		STOP timestamp,
-		PATIENT varchar,
-		ORGANIZATION varchar,
-		PROVIDER varchar,
-		PAYER varchar,
-		ENCOUNTERCLASS varchar,
-		CODE varchar,
-		DESCRIPTION varchar,
-		BASE_ENCOUNTER_COST float,
-		TOTAL_CLAIM_COST float,
-		PAYER_COVERAGE float,
-		REASONCODE varchar,
-		REASONDESCRIPTION varchar
-	)
-);
+  name synthea.encounters,
+  kind SEED (
+    path '$root/seeds/synthea/encounters.csv'
+  ),
+  columns (
+    Id TEXT,
+    START TIMESTAMP,
+    STOP TIMESTAMP,
+    PATIENT TEXT,
+    ORGANIZATION TEXT,
+    PROVIDER TEXT,
+    PAYER TEXT,
+    ENCOUNTERCLASS TEXT,
+    CODE TEXT,
+    DESCRIPTION TEXT,
+    BASE_ENCOUNTER_COST REAL,
+    TOTAL_CLAIM_COST REAL,
+    PAYER_COVERAGE REAL,
+    REASONCODE TEXT,
+    REASONDESCRIPTION TEXT
+  )
+)

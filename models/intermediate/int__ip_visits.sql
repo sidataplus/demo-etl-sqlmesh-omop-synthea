@@ -1,15 +1,15 @@
 MODEL (
-    name int.ip_visits,
-    description "Intermediate model for inpatient visits, collapsing overlapping encounters",
-    kind FULL,
-    columns (
-        visit_id BIGINT,
-        encounter_id VARCHAR,
-        person_id BIGINT,
-        visit_class VARCHAR,
-        visit_start_date DATE,
-        visit_end_date DATE
-    )
+  name int.ip_visits,
+  description "Intermediate model for inpatient visits, collapsing overlapping encounters",
+  kind FULL,
+  columns (
+    visit_id BIGINT,
+    encounter_id TEXT,
+    person_id BIGINT,
+    visit_class TEXT,
+    visit_start_date DATE,
+    visit_end_date DATE
+  )
 );
 
 JINJA_QUERY_BEGIN;
@@ -154,5 +154,4 @@ LEFT JOIN er_starts AS er
     ON
         v.person_id = er.person_id
         AND v.visit_start_date = er.encounter_start_date
-
 JINJA_END;

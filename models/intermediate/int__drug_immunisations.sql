@@ -1,39 +1,38 @@
 MODEL (
-    name int.drug_immunisations,
-    description "Drug exposure data derived from immunizations",
-    kind FULL,
-    columns (
-        person_id BIGINT,
-        patient_id VARCHAR,
-        encounter_id VARCHAR,
-        provider_id BIGINT,
-        visit_occurrence_id BIGINT,
-        visit_detail_id BIGINT,
-        drug_concept_id INT,
-        drug_exposure_start_date DATE,
-        drug_exposure_start_datetime TIMESTAMP,
-        drug_exposure_end_date DATE,
-        drug_exposure_end_datetime TIMESTAMP,
-        verbatim_end_date DATE,
-        drug_type_concept_id INT,
-        stop_reason VARCHAR,
-        refills INT,
-        quantity INT,
-        days_supply INT,
-        sig VARCHAR,
-        route_concept_id INT,
-        lot_number VARCHAR,
-        drug_source_value VARCHAR,
-        drug_source_concept_id INT,
-        route_source_value VARCHAR,
-        dose_unit_source_value VARCHAR,
-        drug_base_cost NUMERIC,
-        drug_paid_by_payer NUMERIC
-    )
+  name int.drug_immunisations,
+  description "Drug exposure data derived from immunizations",
+  kind FULL,
+  columns (
+    person_id BIGINT,
+    patient_id TEXT,
+    encounter_id TEXT,
+    provider_id BIGINT,
+    visit_occurrence_id BIGINT,
+    visit_detail_id BIGINT,
+    drug_concept_id INT,
+    drug_exposure_start_date DATE,
+    drug_exposure_start_datetime TIMESTAMP,
+    drug_exposure_end_date DATE,
+    drug_exposure_end_datetime TIMESTAMP,
+    verbatim_end_date DATE,
+    drug_type_concept_id INT,
+    stop_reason TEXT,
+    refills INT,
+    quantity INT,
+    days_supply INT,
+    sig TEXT,
+    route_concept_id INT,
+    lot_number TEXT,
+    drug_source_value TEXT,
+    drug_source_concept_id INT,
+    route_source_value TEXT,
+    dose_unit_source_value TEXT,
+    drug_base_cost DECIMAL(18, 3),
+    drug_paid_by_payer DECIMAL(18, 3)
+  )
 );
 
 JINJA_QUERY_BEGIN;
-
 SELECT
     p.person_id
     , i.patient_id
@@ -77,5 +76,4 @@ INNER JOIN int.person AS p
     ON i.patient_id = p.person_source_value
 LEFT JOIN int.visit_detail AS vd
     ON i.encounter_id = vd.encounter_id
-
 JINJA_END;

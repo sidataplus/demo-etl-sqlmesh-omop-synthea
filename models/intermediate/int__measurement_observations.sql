@@ -1,35 +1,34 @@
 MODEL (
-    name int.measurement_observations,
-    description "Measurement data derived from observations",
-    kind FULL,
-    columns (
-        person_id BIGINT,
-        measurement_concept_id INT,
-        measurement_date DATE,
-        measurement_datetime TIMESTAMP,
-        measurement_time TIME,
-        measurement_type_concept_id INT,
-        operator_concept_id INT,
-        value_as_number DECIMAL,
-        value_as_concept_id INT,
-        unit_concept_id INT,
-        range_low DECIMAL,
-        range_high DECIMAL,
-        provider_id BIGINT,
-        visit_occurrence_id BIGINT,
-        visit_detail_id BIGINT,
-        measurement_source_value VARCHAR,
-        measurement_source_concept_id INT,
-        unit_source_value VARCHAR,
-        value_source_value VARCHAR,
-        unit_source_concept_id INT,
-        measurement_event_id BIGINT,
-        meas_event_field_concept_id INT
-    )
+  name int.measurement_observations,
+  description "Measurement data derived from observations",
+  kind FULL,
+  columns (
+    person_id BIGINT,
+    measurement_concept_id INT,
+    measurement_date DATE,
+    measurement_datetime TIMESTAMP,
+    measurement_time TIME,
+    measurement_type_concept_id INT,
+    operator_concept_id INT,
+    value_as_number DECIMAL(18, 3),
+    value_as_concept_id INT,
+    unit_concept_id INT,
+    range_low DECIMAL(18, 3),
+    range_high DECIMAL(18, 3),
+    provider_id BIGINT,
+    visit_occurrence_id BIGINT,
+    visit_detail_id BIGINT,
+    measurement_source_value TEXT,
+    measurement_source_concept_id INT,
+    unit_source_value TEXT,
+    value_source_value TEXT,
+    unit_source_concept_id INT,
+    measurement_event_id BIGINT,
+    meas_event_field_concept_id INT
+  )
 );
 
 JINJA_QUERY_BEGIN;
-
 SELECT
     p.person_id
     , srctostdvm.target_concept_id AS measurement_concept_id
@@ -88,5 +87,4 @@ INNER JOIN int.person AS p
     ON o.patient_id = p.person_source_value
 LEFT JOIN int.visit_detail AS vd
     ON o.encounter_id = vd.encounter_id
-
 JINJA_END;

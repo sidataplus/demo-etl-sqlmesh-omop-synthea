@@ -1,25 +1,24 @@
 MODEL (
-    name int.observation_conditions,
-    description "Observation data derived from conditions",
-    kind FULL,
-    columns (
-        person_id BIGINT,
-        patient_id VARCHAR,
-        encounter_id VARCHAR,
-        observation_concept_id INT,
-        observation_date DATE,
-        observation_datetime TIMESTAMP,
-        observation_type_concept_id INT,
-        provider_id BIGINT,
-        visit_occurrence_id BIGINT,
-        visit_detail_id BIGINT,
-        observation_source_value VARCHAR,
-        observation_source_concept_id INT
-    )
+  name int.observation_conditions,
+  description "Observation data derived from conditions",
+  kind FULL,
+  columns (
+    person_id BIGINT,
+    patient_id TEXT,
+    encounter_id TEXT,
+    observation_concept_id INT,
+    observation_date DATE,
+    observation_datetime TIMESTAMP,
+    observation_type_concept_id INT,
+    provider_id BIGINT,
+    visit_occurrence_id BIGINT,
+    visit_detail_id BIGINT,
+    observation_source_value TEXT,
+    observation_source_concept_id INT
+  )
 );
 
 JINJA_QUERY_BEGIN;
-
 SELECT
     p.person_id
     , c.patient_id
@@ -50,5 +49,4 @@ INNER JOIN int.person AS p
     ON c.patient_id = p.person_source_value
 LEFT JOIN int.visit_detail AS vd
     ON c.encounter_id = vd.encounter_id
-
 JINJA_END;

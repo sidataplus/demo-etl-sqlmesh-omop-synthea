@@ -1,15 +1,15 @@
 MODEL (
-    name int.op_visits,
-    description "Intermediate model for single-day outpatient visits",
-    kind FULL,
-    columns (
-        visit_id VARCHAR,
-        encounter_id VARCHAR,
-        person_id BIGINT,
-        visit_class VARCHAR,
-        visit_start_date DATE,
-        visit_end_date DATE
-    )
+  name int.op_visits,
+  description "Intermediate model for single-day outpatient visits",
+  kind FULL,
+  columns (
+    visit_id TEXT,
+    encounter_id TEXT,
+    person_id BIGINT,
+    visit_class TEXT,
+    visit_start_date DATE,
+    visit_end_date DATE
+  )
 );
 
 JINJA_QUERY_BEGIN;
@@ -26,5 +26,4 @@ FROM int.encounters
 WHERE encounter_class IN ('ambulatory', 'wellness', 'outpatient')
 -- only include single-day visits
 AND encounter_start_date = encounter_stop_date
-
 JINJA_END;

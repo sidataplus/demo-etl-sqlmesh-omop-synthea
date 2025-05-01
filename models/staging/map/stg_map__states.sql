@@ -1,7 +1,8 @@
 MODEL (
-	name stg.map__states,
-	kind VIEW
+  name stg.map__states,
+  kind VIEW
 );
 
-SELECT *
+SELECT
+  *
 FROM map.states

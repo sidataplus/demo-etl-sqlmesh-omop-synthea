@@ -1,28 +1,27 @@
 MODEL (
-    name int.procedure_occurrence,
-    description "Intermediate procedure occurrence model",
-    kind FULL,
-    columns (
-        procedure_occurrence_id BIGINT,
-        person_id BIGINT,
-        procedure_base_cost NUMERIC,
-        encounter_id VARCHAR,
-        procedure_concept_id INT,
-        procedure_date DATE,
-        procedure_datetime TIMESTAMP,
-        procedure_end_date DATE,
-        procedure_end_datetime TIMESTAMP,
-        procedure_type_concept_id INT,
-        modifier_concept_id INT,
-        quantity INT,
-        procedure_source_value VARCHAR,
-        procedure_source_concept_id INT,
-        modifier_source_value VARCHAR
-    )
+  name int.procedure_occurrence,
+  description "Intermediate procedure occurrence model",
+  kind FULL,
+  columns (
+    procedure_occurrence_id BIGINT,
+    person_id BIGINT,
+    procedure_base_cost DECIMAL(18, 3),
+    encounter_id TEXT,
+    procedure_concept_id INT,
+    procedure_date DATE,
+    procedure_datetime TIMESTAMP,
+    procedure_end_date DATE,
+    procedure_end_datetime TIMESTAMP,
+    procedure_type_concept_id INT,
+    modifier_concept_id INT,
+    quantity INT,
+    procedure_source_value TEXT,
+    procedure_source_concept_id INT,
+    modifier_source_value TEXT
+  )
 );
 
 JINJA_QUERY_BEGIN;
-
 SELECT
     row_number() OVER (ORDER BY p.person_id) AS procedure_occurrence_id
     , p.person_id
@@ -54,5 +53,4 @@ INNER JOIN int.source_to_source_vocab_map AS srctosrcvm
         AND srctosrcvm.source_vocabulary_id = 'SNOMED'
 INNER JOIN int.person AS p
     ON pr.patient_id = p.person_source_value
-
 JINJA_END;

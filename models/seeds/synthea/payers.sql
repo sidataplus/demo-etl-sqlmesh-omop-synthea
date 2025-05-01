@@ -1,29 +1,29 @@
 MODEL (
-	name synthea.payers,
-	kind SEED (
-		path '$root/seeds/synthea/payers.csv'
-	),
-	columns (
-		Id varchar,
-		NAME varchar,
-		ADDRESS varchar,
-		CITY varchar,
-		STATE_HEADQUARTERED varchar,
-		ZIP integer,
-		PHONE varchar,
-		AMOUNT_COVERED float,
-		AMOUNT_UNCOVERED float,
-		REVENUE float,
-		COVERED_ENCOUNTERS integer,
-		UNCOVERED_ENCOUNTERS integer,
-		COVERED_MEDICATIONS integer,
-		UNCOVERED_MEDICATIONS integer,
-		COVERED_PROCEDURES integer,
-		UNCOVERED_PROCEDURES integer,
-		COVERED_IMMUNIZATIONS integer,
-		UNCOVERED_IMMUNIZATIONS integer,
-		UNIQUE_CUSTOMERS integer,
-		QOLS_AVG float,
-		MEMBER_MONTHS integer
-	)
-);
+  name synthea.payers,
+  kind SEED (
+    path '$root/seeds/synthea/payers.csv'
+  ),
+  columns (
+    Id TEXT,
+    NAME TEXT,
+    ADDRESS TEXT,
+    CITY TEXT,
+    STATE_HEADQUARTERED TEXT,
+    ZIP INT,
+    PHONE TEXT,
+    AMOUNT_COVERED REAL,
+    AMOUNT_UNCOVERED REAL,
+    REVENUE REAL,
+    COVERED_ENCOUNTERS INT,
+    UNCOVERED_ENCOUNTERS INT,
+    COVERED_MEDICATIONS INT,
+    UNCOVERED_MEDICATIONS INT,
+    COVERED_PROCEDURES INT,
+    UNCOVERED_PROCEDURES INT,
+    COVERED_IMMUNIZATIONS INT,
+    UNCOVERED_IMMUNIZATIONS INT,
+    UNIQUE_CUSTOMERS INT,
+    QOLS_AVG REAL,
+    MEMBER_MONTHS INT
+  )
+)

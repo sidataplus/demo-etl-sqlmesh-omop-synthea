@@ -1,23 +1,23 @@
 MODEL (
-	name synthea.allergies,
-	kind SEED (
-		path '$root/seeds/synthea/allergies.csv'
-	),
-	columns (
-		START date,
-		STOP date,
-		PATIENT varchar,
-		ENCOUNTER varchar,
-		CODE varchar,
-		SYSTEM varchar,
-		DESCRIPTION varchar,
-		TYPE varchar,
-		CATEGORY varchar,
-		REACTION1 varchar,
-		DESCRIPTION1 varchar,
-		SEVERITY1 varchar,
-		REACTION2 varchar,
-		DESCRIPTION2 varchar,
-		SEVERITY2 varchar
-	)
-);
+  name synthea.allergies,
+  kind SEED (
+    path '$root/seeds/synthea/allergies.csv'
+  ),
+  columns (
+    START DATE,
+    STOP DATE,
+    PATIENT TEXT,
+    ENCOUNTER TEXT,
+    CODE TEXT,
+    SYSTEM TEXT,
+    DESCRIPTION TEXT,
+    TYPE TEXT,
+    CATEGORY TEXT,
+    REACTION1 TEXT,
+    DESCRIPTION1 TEXT,
+    SEVERITY1 TEXT,
+    REACTION2 TEXT,
+    DESCRIPTION2 TEXT,
+    SEVERITY2 TEXT
+  )
+)

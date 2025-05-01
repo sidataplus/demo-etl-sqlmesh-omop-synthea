@@ -1,14 +1,14 @@
 MODEL (
-	name synthea.immunizations,
-	kind SEED (
-		path '$root/seeds/synthea/immunizations.csv'
-	),
-	columns (
-		DATE timestamp,
-		PATIENT varchar,
-		ENCOUNTER varchar,
-		CODE varchar,
-		DESCRIPTION varchar,
-		BASE_COST float
-	)
-);
+  name synthea.immunizations,
+  kind SEED (
+    path '$root/seeds/synthea/immunizations.csv'
+  ),
+  columns (
+    DATE TIMESTAMP,
+    PATIENT TEXT,
+    ENCOUNTER TEXT,
+    CODE TEXT,
+    DESCRIPTION TEXT,
+    BASE_COST REAL
+  )
+)
