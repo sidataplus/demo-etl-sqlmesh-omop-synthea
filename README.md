@@ -4,6 +4,9 @@ Quickstart demo to show how to use SQLMesh to ETL Synthea data to OMOP CDM.
 
 NOTICE: This demo heavily reuses code from [dbt-synthea](https://github.com/OHDSI/dbt-synthea) licensed under Apache-2.0 license.
 
+CAUTION: This demo is for educational purpose only. It is not intended to be used in production. Please do not use it in production without proper testing and validation.
+It was created for a demonstration in OHDSI APAC Scientific Forum on May 1, 2025 with heavy reliance on VS Code Copilot, so there are many inconsistencies and errors in the code.  
+
 Please refer to more information at these links:
 
 - OHDSI APAC 2024 Poster titled [From dbt to SQLMesh: Enhancing OMOP CDM Data Conversion Efficiency](https://www.ohdsi.org/wp-content/uploads/2025/01/20_Nongnaphat-Wongpiyachai_From-dbt-to-SQLMesh.pdf) by Nongnaphat Wongpiyachai, Chinapat Onprasert, Sornchai Manosorn, Natthawut Adulyanukosol
@@ -148,3 +151,9 @@ Explanation of the code:
   - Unlike dbt, SQLMesh does not need {{ ref() }} function to refer to other models. You can use the model name directly in the SQL statement.
 
 2. We can run `sqlmesh plan dev` like earlier to apply local changes to the target environment, or use `sqlmesh ui` to interactively check the changes and apply them via the web UI.
+
+
+### Part 4: Intermediate models
+
+### Part 5: Final OMOP models
+

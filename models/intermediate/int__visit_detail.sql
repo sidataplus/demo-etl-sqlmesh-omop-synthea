@@ -10,7 +10,7 @@ MODEL (
         visit_detail_start_date DATE,
         visit_detail_start_datetime TIMESTAMP,
         visit_detail_end_date DATE,
-        visit_detail_stop_datetime TIMESTAMP,
+        visit_detail_end_datetime TIMESTAMP,
         visit_detail_type_concept_id INT,
         provider_id BIGINT,
         care_site_id INT,
@@ -43,7 +43,7 @@ SELECT
     , e.encounter_start_date AS visit_detail_start_date
     , e.encounter_start_datetime AS visit_detail_start_datetime
     , e.encounter_stop_date AS visit_detail_end_date
-    , e.encounter_stop_datetime AS visit_detail_stop_datetime
+    , e.encounter_stop_datetime AS visit_detail_end_datetime
     , 32827 AS visit_detail_type_concept_id -- EHR Encounter Record
     , e.provider_id
     , CAST(NULL AS INT)  AS care_site_id
