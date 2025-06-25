@@ -35,9 +35,9 @@ Please refer to more information at these links:
 ## Part 1: Initiation
 
 1. Create a repository on GitHub or clone this one
-2. (Not required but recommended) Create a virtual environment with `python -m venv .env`
-3. (Not required but recommended) Activate the virtual environment with `source .env/bin/activate` on macOS/Linux or `.env\Scripts\activate` on Windows
-4. Install sqlmesh with `pip install sqlmesh[web]`. By default, it will install SQLMesh with DuckDB support. If you want to use other engines, please refer to the [SQLMesh documentation: Installation](https://sqlmesh.readthedocs.io/en/stable/installation/#install-extras) for more information.
+2. (Not required but recommended) Create a virtual environment with `python -m venv .venv`
+3. (Not required but recommended) Activate the virtual environment with `source .venv/bin/activate` on macOS/Linux or `.venv\Scripts\activate` on Windows
+4. Install sqlmesh with `pip install "sqlmesh[web,lsp]"`. By default, it will install SQLMesh with DuckDB support. If you want to use other engines, please refer to the [SQLMesh documentation: Installation](https://sqlmesh.readthedocs.io/en/stable/installation/#install-extras) for more information.
 5. (Skip if you already cloned the repo in step 1) Initialize directory with `sqlmesh init duckdb` & Remove .sql files in `audits/`, `models/`, and `tests` directories.
 6. (Skip if you already cloned the repo in step 1) In this demo, we will use Synthea data as CSV files from <https://github.com/OHDSI/dbt-synthea/tree/main/seeds> and put them in `seeds/` directory. *In production, we will set SQLMesh to connect to live databases. Please refer to the [SQLMesh documentation: Connections guide](https://sqlmesh.readthedocs.io/en/stable/guides/connections/) for more information.*
 
