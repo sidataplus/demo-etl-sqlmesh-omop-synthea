@@ -2,7 +2,31 @@ MODEL (
   name omop.source_to_concept_map,
   kind FULL,
   description "Maintains mappings from local source codes to Standard Concepts.",
-  column_descriptions (source_code = "The source code being mapped.", source_concept_id = "A foreign key identifier to the Source Concept.", source_vocabulary_id = "A foreign key identifier to the Vocabulary of the source code.", source_code_description = "The description of the source code.", target_concept_id = "A foreign key identifier to the target Standard Concept.", target_vocabulary_id = "A foreign key identifier to the Vocabulary of the target Concept.", valid_start_date = "The date when the mapping is first valid.", valid_end_date = "The date when the mapping becomes invalid.", invalid_reason = "Reason the mapping was invalidated.")
+  column_descriptions (
+    source_code = "The source code being mapped.",
+    source_concept_id = "A foreign key identifier to the Source Concept.",
+    source_vocabulary_id = "A foreign key identifier to the Vocabulary of the source code.",
+    source_code_description = "The description of the source code.",
+    target_concept_id = "A foreign key identifier to the target Standard Concept.",
+    target_vocabulary_id = "A foreign key identifier to the Vocabulary of the target Concept.",
+    valid_start_date = "The date when the mapping is first valid.",
+    valid_end_date = "The date when the mapping becomes invalid.",
+    invalid_reason = "Reason the mapping was invalidated."
+  ),
+  audits (
+    source_to_concept_map_source_code_is_required,
+    source_to_concept_map_source_concept_id_is_required,
+    source_to_concept_map_source_concept_id_is_foreign_key,
+    source_to_concept_map_source_vocabulary_id_is_required,
+    source_to_concept_map_target_concept_id_is_required,
+    source_to_concept_map_target_concept_id_is_foreign_key,
+    source_to_concept_map_target_concept_id_is_standard_valid_concept,
+    source_to_concept_map_target_vocabulary_id_is_required,
+    source_to_concept_map_target_vocabulary_id_is_foreign_key,
+    source_to_concept_map_valid_end_date_is_required,
+    source_to_concept_map_valid_start_date_is_required,
+    source_to_concept_map_valid_start_date_start_before_end
+  )
 );
 
 /* Note: This table is typically populated during the ETL mapping process (e.g., using tools like Usagi) */ /* or provided as part of vocabulary data. It's not directly generated from Synthea in this basic ETL. */ /* Creating an empty table structure for compatibility. */

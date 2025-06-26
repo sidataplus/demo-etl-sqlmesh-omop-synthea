@@ -15,7 +15,32 @@ MODEL (
     vocabulary_version TEXT,
     cdm_version_concept_id INT
   ),
-  column_descriptions (cdm_source_name = 'The name of the CDM instance.', cdm_source_abbreviation = 'The abbreviation of the CDM instance.', cdm_holder = 'The holder of the CDM instance.', source_description = 'The description of the CDM instance.', source_documentation_reference = 'Reference to documentation about the source data.', cdm_etl_reference = 'Reference to the ETL process.', source_release_date = 'The date the data was extracted from the source system.', cdm_release_date = 'The date the ETL script was completed.', cdm_version = 'Version of the OMOP CDM used as string. e.g. v5.4', vocabulary_version = 'Version of the OMOP standardised vocabularies loaded', cdm_version_concept_id = 'The Concept Id representing the version of the CDM.')
+  column_descriptions (
+    cdm_source_name = 'The name of the CDM instance.',
+    cdm_source_abbreviation = 'The abbreviation of the CDM instance.',
+    cdm_holder = 'The holder of the CDM instance.',
+    source_description = 'The description of the CDM instance.',
+    source_documentation_reference = 'Reference to documentation about the source data.',
+    cdm_etl_reference = 'Reference to the ETL process.',
+    source_release_date = 'The date the data was extracted from the source system.',
+    cdm_release_date = 'The date the ETL script was completed.',
+    cdm_version = 'Version of the OMOP CDM used as string. e.g. v5.4',
+    vocabulary_version = 'Version of the OMOP standardised vocabularies loaded',
+    cdm_version_concept_id = 'The Concept Id representing the version of the CDM.'
+  ),
+  audits (
+    cdm_source_cdm_holder_is_required,
+    cdm_source_cdm_release_date_is_required,
+    cdm_source_cdm_source_abbreviation_is_required,
+    cdm_source_cdm_source_name_is_required,
+    cdm_source_cdm_version_concept_id_is_required,
+    cdm_source_cdm_version_concept_id_is_foreign_key,
+    cdm_source_cdm_version_concept_id_fk_domain,
+    cdm_source_cdm_version_concept_id_is_standard_valid_concept,
+    cdm_source_source_release_date_is_required,
+    cdm_source_source_release_date_start_before_end,
+    cdm_source_vocabulary_version_is_required
+  )
 );
 
 SELECT

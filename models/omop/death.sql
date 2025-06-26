@@ -10,13 +10,29 @@ MODEL (
     cause_concept_id INT,
     cause_source_value TEXT,
     cause_source_concept_id INT
+  ),
+  audits (
+    person_completeness_death,
+    death_cause_concept_id_is_foreign_key,
+    death_cause_concept_id_is_standard_valid_concept,
+    death_cause_concept_id_standard_concept_record_completeness,
+    death_cause_source_concept_id_is_foreign_key,
+    death_death_date_is_required,
+    death_death_date_after_birth,
+    death_death_datetime_after_birth,
+    death_death_type_concept_id_is_foreign_key,
+    death_death_type_concept_id_fk_domain,
+    death_death_type_concept_id_is_standard_valid_concept,
+    death_death_type_concept_id_standard_concept_record_completeness,
+    death_person_id_is_required,
+    death_person_id_is_foreign_key
   )
 );
 
 /* NB: */ /* We observe death records in both the encounters.csv and observations.csv file. */ /* To find the death records in observations, use code = '69453-9'. This is a LOINC code */ /* that represents an observation of the US standard certificate of death. */ /* Encounters.code = '308646001' is the SNOMED observation of death certification. */ /* The reasoncode column is the SNOMED code for the condition that caused death. */
 SELECT
   e.person_id,
-  CAST(e.encounter_start_date AS DATE) AS death_date,
+  e.encounter_start_date::DATE AS death_date,
   e.encounter_start_datetime AS death_datetime,
   32817 AS death_type_concept_id, /* EHR representation */
   srctostdvm.target_concept_id AS cause_concept_id,

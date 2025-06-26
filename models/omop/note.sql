@@ -20,7 +20,53 @@ MODEL (
     note_event_id BIGINT,
     note_event_field_concept_id INT
   ),
-  column_descriptions (note_id = 'A unique identifier for each note.', person_id = 'A foreign key identifier to the Person about whom the note was recorded.', note_date = 'The date the note was recorded.', note_datetime = 'The date and time the note was recorded.', note_type_concept_id = 'A foreign key identifier to the Concept defining the type of note.', note_class_concept_id = 'A foreign key identifier to the Concept defining the class of the note.', note_title = 'The title of the note.', note_text = 'The content of the note.', encoding_concept_id = 'A foreign key identifier to the Concept defining the encoding of the note text.', language_concept_id = 'A foreign key identifier to the Concept defining the language of the note.', provider_id = 'A foreign key identifier to the Provider who recorded the note.', visit_occurrence_id = 'A foreign key identifier to the Visit Occurrence during which the note was recorded.', visit_detail_id = 'A foreign key identifier to the Visit Detail during which the note was recorded.', note_source_value = 'The source identifier for the note.', note_event_id = 'A foreign key to the clinical event table to which the note refers.', note_event_field_concept_id = 'A foreign key to the CONCEPT table indicating the domain of the clinical event table.')
+  column_descriptions (
+    note_id = 'A unique identifier for each note.',
+    person_id = 'A foreign key identifier to the Person about whom the note was recorded.',
+    note_date = 'The date the note was recorded.',
+    note_datetime = 'The date and time the note was recorded.',
+    note_type_concept_id = 'A foreign key identifier to the Concept defining the type of note.',
+    note_class_concept_id = 'A foreign key identifier to the Concept defining the class of the note.',
+    note_title = 'The title of the note.',
+    note_text = 'The content of the note.',
+    encoding_concept_id = 'A foreign key identifier to the Concept defining the encoding of the note text.',
+    language_concept_id = 'A foreign key identifier to the Concept defining the language of the note.',
+    provider_id = 'A foreign key identifier to the Provider who recorded the note.',
+    visit_occurrence_id = 'A foreign key identifier to the Visit Occurrence during which the note was recorded.',
+    visit_detail_id = 'A foreign key identifier to the Visit Detail during which the note was recorded.',
+    note_source_value = 'The source identifier for the note.',
+    note_event_id = 'A foreign key to the clinical event table to which the note refers.',
+    note_event_field_concept_id = 'A foreign key to the CONCEPT table indicating the domain of the clinical event table.'
+  ),
+  audits (
+    person_completeness_note,
+    note_encoding_concept_id_is_required,
+    note_encoding_concept_id_is_foreign_key,
+    note_encoding_concept_id_is_standard_valid_concept,
+    note_language_concept_id_is_required,
+    note_language_concept_id_is_foreign_key,
+    note_language_concept_id_is_standard_valid_concept,
+    note_note_class_concept_id_is_required,
+    note_note_class_concept_id_is_foreign_key,
+    note_note_class_concept_id_is_standard_valid_concept,
+    note_note_date_is_required,
+    note_note_date_after_birth,
+    note_note_datetime_after_birth,
+    note_note_event_field_concept_id_is_foreign_key,
+    note_note_event_field_concept_id_is_standard_valid_concept,
+    note_note_id_is_required,
+    note_note_id_is_primary_key,
+    note_note_text_is_required,
+    note_note_type_concept_id_is_required,
+    note_note_type_concept_id_is_foreign_key,
+    note_note_type_concept_id_fk_domain,
+    note_note_type_concept_id_is_standard_valid_concept,
+    note_person_id_is_required,
+    note_person_id_is_foreign_key,
+    note_provider_id_is_foreign_key,
+    note_visit_detail_id_is_foreign_key,
+    note_visit_occurrence_id_is_foreign_key
+  )
 );
 
 SELECT

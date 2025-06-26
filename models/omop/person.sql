@@ -23,9 +23,56 @@ MODEL (
     ethnicity_source_value TEXT,
     ethnicity_source_concept_id INT
   ),
-  column_descriptions (person_id = 'A unique identifier for each person.', gender_concept_id = 'The gender of the person.', year_of_birth = 'The year of birth of the person.', month_of_birth = 'The month of birth of the person.', day_of_birth = 'The day of birth of the person.', birth_datetime = 'The date and time of birth of the person.', race_concept_id = 'The race of the person.', ethnicity_concept_id = 'The ethnicity of the person.', location_id = 'A foreign key to the location record.', provider_id = 'A foreign key to the provider record.', care_site_id = 'A foreign key to the care site record.', person_source_value = 'The source representation of the person identifier.', gender_source_value = 'The source representation of the gender.', gender_source_concept_id = 'The source concept for gender.', race_source_value = 'The source representation of the race.', race_source_concept_id = 'The source concept for race.', ethnicity_source_value = 'The source representation of the ethnicity.', ethnicity_source_concept_id = 'The source concept for ethnicity.'),
-  grain (person_id),
-  audits (unique_values(columns := (person_id)))
+  column_descriptions (
+    person_id = 'A unique identifier for each person.',
+    gender_concept_id = 'The gender of the person.',
+    year_of_birth = 'The year of birth of the person.',
+    month_of_birth = 'The month of birth of the person.',
+    day_of_birth = 'The day of birth of the person.',
+    birth_datetime = 'The date and time of birth of the person.',
+    race_concept_id = 'The race of the person.',
+    ethnicity_concept_id = 'The ethnicity of the person.',
+    location_id = 'A foreign key to the location record.',
+    provider_id = 'A foreign key to the provider record.',
+    care_site_id = 'A foreign key to the care site record.',
+    person_source_value = 'The source representation of the person identifier.',
+    gender_source_value = 'The source representation of the gender.',
+    gender_source_concept_id = 'The source concept for gender.',
+    race_source_value = 'The source representation of the race.',
+    race_source_concept_id = 'The source concept for race.',
+    ethnicity_source_value = 'The source representation of the ethnicity.',
+    ethnicity_source_concept_id = 'The source concept for ethnicity.'
+  ),
+  grain (
+    person_id
+  ),
+  audits (
+    person_exists,
+    person_care_site_id_is_foreign_key,
+    person_ethnicity_concept_id_is_required,
+    person_ethnicity_concept_id_is_foreign_key,
+    person_ethnicity_concept_id_fk_domain,
+    person_ethnicity_concept_id_is_standard_valid_concept,
+    person_ethnicity_concept_id_standard_concept_record_completeness,
+    person_ethnicity_source_concept_id_is_foreign_key,
+    person_gender_concept_id_is_required,
+    person_gender_concept_id_is_foreign_key,
+    person_gender_concept_id_fk_domain,
+    person_gender_concept_id_is_standard_valid_concept,
+    person_gender_concept_id_standard_concept_record_completeness,
+    person_gender_source_concept_id_is_foreign_key,
+    person_location_id_is_foreign_key,
+    person_person_id_is_required,
+    person_person_id_is_primary_key,
+    person_provider_id_is_foreign_key,
+    person_race_concept_id_is_required,
+    person_race_concept_id_is_foreign_key,
+    person_race_concept_id_fk_domain,
+    person_race_concept_id_is_standard_valid_concept,
+    person_race_concept_id_standard_concept_record_completeness,
+    person_race_source_concept_id_is_foreign_key,
+    person_year_of_birth_is_required
+  )
 );
 
 SELECT

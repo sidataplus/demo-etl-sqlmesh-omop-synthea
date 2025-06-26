@@ -10,7 +10,22 @@ MODEL (
     care_site_source_value TEXT,
     place_of_service_source_value TEXT
   ),
-  column_descriptions (care_site_id = 'A unique identifier for each Care Site.', care_site_name = 'The verbatim name of the Care Site, as specified in the source data.', place_of_service_concept_id = 'A foreign key to the Place of Service Concept in the StandardizedVocabularies.', location_id = 'A foreign key to the location table.', care_site_source_value = 'The identifier for the Care Site in the source data.', place_of_service_source_value = 'The Place of Service identifier, as it appears in the source data.')
+  column_descriptions (
+    care_site_id = 'A unique identifier for each Care Site.',
+    care_site_name = 'The verbatim name of the Care Site, as specified in the source data.',
+    place_of_service_concept_id = 'A foreign key to the Place of Service Concept in the StandardizedVocabularies.',
+    location_id = 'A foreign key to the location table.',
+    care_site_source_value = 'The identifier for the Care Site in the source data.',
+    place_of_service_source_value = 'The Place of Service identifier, as it appears in the source data.'
+  ),
+  audits (
+    care_site_care_site_id_is_required,
+    care_site_care_site_id_is_primary_key,
+    care_site_location_id_is_foreign_key,
+    care_site_place_of_service_concept_id_is_foreign_key,
+    care_site_place_of_service_concept_id_is_standard_valid_concept,
+    care_site_place_of_service_concept_id_standard_concept_record_completeness
+  )
 );
 
 JINJA_QUERY_BEGIN;

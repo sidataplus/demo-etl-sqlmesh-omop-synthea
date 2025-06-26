@@ -21,7 +21,45 @@ MODEL (
     stop_reason_source_value TEXT,
     stop_reason_source_concept_id INT
   ),
-  column_descriptions (payer_plan_period_id = 'A unique identifier for each payer plan period.', person_id = 'A foreign key identifier to the Person covered by the Plan.', payer_plan_period_start_date = 'The start date of the Plan coverage.', payer_plan_period_end_date = 'The end date of the Plan coverage.', payer_concept_id = 'A foreign key identifier to the Concept representing the Payer.', payer_source_value = 'The source value for the Payer.', payer_source_concept_id = 'A foreign key identifier to a Concept that refers to the Payer source value.', plan_concept_id = 'A foreign key identifier to the Concept representing the specific health benefit Plan.', plan_source_value = 'The source value for the Plan.', plan_source_concept_id = 'A foreign key identifier to a Concept that refers to the Plan source value.', sponsor_concept_id = 'A foreign key identifier to the Concept representing the sponsor of the Plan.', sponsor_source_value = 'The source value for the Plan sponsor.', sponsor_source_concept_id = 'A foreign key identifier to a Concept that refers to the sponsor source value.', family_source_value = 'The common identifier for all people covered by the same policy.', stop_reason_concept_id = 'A foreign key identifier to the Concept representing the reason the Person left the Plan.', stop_reason_source_value = 'The source value for the stop reason.', stop_reason_source_concept_id = 'A foreign key identifier to a Concept that refers to the stop reason source value.')
+  column_descriptions (
+    payer_plan_period_id = 'A unique identifier for each payer plan period.',
+    person_id = 'A foreign key identifier to the Person covered by the Plan.',
+    payer_plan_period_start_date = 'The start date of the Plan coverage.',
+    payer_plan_period_end_date = 'The end date of the Plan coverage.',
+    payer_concept_id = 'A foreign key identifier to the Concept representing the Payer.',
+    payer_source_value = 'The source value for the Payer.',
+    payer_source_concept_id = 'A foreign key identifier to a Concept that refers to the Payer source value.',
+    plan_concept_id = 'A foreign key identifier to the Concept representing the specific health benefit Plan.',
+    plan_source_value = 'The source value for the Plan.',
+    plan_source_concept_id = 'A foreign key identifier to a Concept that refers to the Plan source value.',
+    sponsor_concept_id = 'A foreign key identifier to the Concept representing the sponsor of the Plan.',
+    sponsor_source_value = 'The source value for the Plan sponsor.',
+    sponsor_source_concept_id = 'A foreign key identifier to a Concept that refers to the sponsor source value.',
+    family_source_value = 'The common identifier for all people covered by the same policy.',
+    stop_reason_concept_id = 'A foreign key identifier to the Concept representing the reason the Person left the Plan.',
+    stop_reason_source_value = 'The source value for the stop reason.',
+    stop_reason_source_concept_id = 'A foreign key identifier to a Concept that refers to the stop reason source value.'
+  ),
+  audits (
+    person_completeness_payer_plan_period,
+    payer_plan_period_payer_concept_id_is_foreign_key,
+    payer_plan_period_payer_plan_period_end_date_is_required,
+    payer_plan_period_payer_plan_period_end_date_after_birth,
+    payer_plan_period_payer_plan_period_id_is_required,
+    payer_plan_period_payer_plan_period_id_is_primary_key,
+    payer_plan_period_payer_plan_period_start_date_is_required,
+    payer_plan_period_payer_plan_period_start_date_start_before_end,
+    payer_plan_period_payer_plan_period_start_date_after_birth,
+    payer_plan_period_payer_source_concept_id_is_foreign_key,
+    payer_plan_period_person_id_is_required,
+    payer_plan_period_person_id_is_foreign_key,
+    payer_plan_period_plan_concept_id_is_foreign_key,
+    payer_plan_period_plan_source_concept_id_is_foreign_key,
+    payer_plan_period_sponsor_concept_id_is_foreign_key,
+    payer_plan_period_sponsor_source_concept_id_is_foreign_key,
+    payer_plan_period_stop_reason_concept_id_is_foreign_key,
+    payer_plan_period_stop_reason_source_concept_id_is_foreign_key
+  )
 );
 
 SELECT

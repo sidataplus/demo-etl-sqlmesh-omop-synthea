@@ -18,7 +18,34 @@ MODEL (
     term_temporal TEXT,
     term_modifiers TEXT
   ),
-  column_descriptions (note_nlp_id = 'A unique identifier for the NLP record.', note_id = 'A foreign key identifier to the NOTE record.', section_concept_id = 'A foreign key identifier to the Concept representing the section of the note.', snippet = 'A small window of text surrounding the term.', "offset" = 'Character offset of the extracted term in the input note.', lexical_variant = 'Raw text extracted from the NLP tool.', note_nlp_concept_id = 'A foreign key identifier to the Concept representing the extracted term.', note_nlp_source_concept_id = 'A foreign key identifier to the Concept representing the source term.', nlp_system = 'Identifier for the NLP system used.', nlp_date = 'The date of the note processing.', nlp_datetime = 'The date and time of the note processing.', term_exists = 'Flag indicating if the term exists.', term_temporal = 'Temporal context of the term.', term_modifiers = 'Modifiers associated with the term.')
+  column_descriptions (
+    note_nlp_id = 'A unique identifier for the NLP record.',
+    note_id = 'A foreign key identifier to the NOTE record.',
+    section_concept_id = 'A foreign key identifier to the Concept representing the section of the note.',
+    snippet = 'A small window of text surrounding the term.',
+    "offset" = 'Character offset of the extracted term in the input note.',
+    lexical_variant = 'Raw text extracted from the NLP tool.',
+    note_nlp_concept_id = 'A foreign key identifier to the Concept representing the extracted term.',
+    note_nlp_source_concept_id = 'A foreign key identifier to the Concept representing the source term.',
+    nlp_system = 'Identifier for the NLP system used.',
+    nlp_date = 'The date of the note processing.',
+    nlp_datetime = 'The date and time of the note processing.',
+    term_exists = 'Flag indicating if the term exists.',
+    term_temporal = 'Temporal context of the term.',
+    term_modifiers = 'Modifiers associated with the term.'
+  ),
+  audits (
+    note_nlp_lexical_variant_is_required,
+    note_nlp_nlp_date_is_required,
+    note_nlp_note_id_is_required,
+    note_nlp_note_nlp_concept_id_is_foreign_key,
+    note_nlp_note_nlp_concept_id_is_standard_valid_concept,
+    note_nlp_note_nlp_id_is_required,
+    note_nlp_note_nlp_id_is_primary_key,
+    note_nlp_note_nlp_source_concept_id_is_foreign_key,
+    note_nlp_section_concept_id_is_foreign_key,
+    note_nlp_section_concept_id_is_standard_valid_concept
+  )
 );
 
 /* Note: Requires NLP processing on the NOTE table, which is empty in this ETL. */ /* Creating an empty table structure for compatibility. */

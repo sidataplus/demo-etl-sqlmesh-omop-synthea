@@ -7,7 +7,18 @@ MODEL (
     concept_synonym_name TEXT,
     language_concept_id INT
   ),
-  column_descriptions (concept_id = 'A foreign key to the Concept in the CONCEPT table.', concept_synonym_name = 'An alternate name for the Concept.', language_concept_id = 'A foreign key to the Concept for the language of the synonym.')
+  column_descriptions (
+    concept_id = 'A foreign key to the Concept in the CONCEPT table.',
+    concept_synonym_name = 'An alternate name for the Concept.',
+    language_concept_id = 'A foreign key to the Concept for the language of the synonym.'
+  ),
+  audits (
+    concept_synonym_concept_id_is_required,
+    concept_synonym_concept_id_is_foreign_key,
+    concept_synonym_concept_synonym_name_is_required,
+    concept_synonym_language_concept_id_is_required,
+    concept_synonym_language_concept_id_is_foreign_key
+  )
 );
 
 SELECT

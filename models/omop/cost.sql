@@ -25,33 +25,47 @@ MODEL (
     revenue_code_source_value TEXT,
     drg_concept_id INT,
     drg_source_value TEXT
+  ),
+  audits (
+    cost_cost_domain_id_is_required,
+    cost_cost_domain_id_is_foreign_key,
+    cost_cost_event_id_is_required,
+    cost_cost_id_is_required,
+    cost_cost_id_is_primary_key,
+    cost_cost_type_concept_id_is_required,
+    cost_cost_type_concept_id_is_foreign_key,
+    cost_cost_type_concept_id_is_standard_valid_concept,
+    cost_cost_type_concept_id_standard_concept_record_completeness,
+    cost_currency_concept_id_is_foreign_key,
+    cost_drg_concept_id_is_foreign_key,
+    cost_revenue_code_concept_id_is_foreign_key
   )
 );
 
 WITH all_costs AS (
-  /* Costs from drug exposures */
-  SELECT
-    drug_exposure_id AS cost_event_id,
-    'Drug' AS cost_domain_id,
-    drug_base_cost AS total_cost,
-    drug_paid_by_payer AS paid_by_payer
-  FROM int.drug_exposure
-  UNION ALL
-  /* Costs from procedure occurrences */
-  SELECT
-    procedure_occurrence_id AS cost_event_id,
-    'Procedure' AS cost_domain_id,
-    procedure_base_cost AS total_cost,
-    NULL::DECIMAL(18, 3) AS paid_by_payer
-  FROM int.procedure_occurrence
-  UNION ALL
-  /* Costs from visit details */
-  SELECT
-    visit_detail_id AS cost_event_id,
-    'Visit' AS cost_domain_id,
-    total_encounter_cost AS total_cost,
-    encounter_payer_coverage AS paid_by_payer
-  FROM int.visit_detail
+    /* Costs from drug exposures */
+    SELECT
+      drug_exposure_id AS cost_event_id,
+      'Drug' AS cost_domain_id,
+      drug_base_cost AS total_cost,
+      drug_paid_by_payer AS paid_by_payer
+    FROM int.drug_exposure
+    UNION ALL
+    /* Costs from procedure occurrences */
+    SELECT
+      procedure_occurrence_id AS cost_event_id,
+      'Procedure' AS cost_domain_id,
+      procedure_base_cost AS total_cost,
+      NULL::DECIMAL(18, 3) AS paid_by_payer
+    FROM int.procedure_occurrence
+    UNION ALL
+    /* Costs from visit details */
+    SELECT
+      visit_detail_id AS cost_event_id,
+      'Visit' AS cost_domain_id,
+      total_encounter_cost AS total_cost,
+      encounter_payer_coverage AS paid_by_payer
+    FROM int.visit_detail
 )
 SELECT
   ROW_NUMBER() OVER (ORDER BY cost_domain_id, cost_event_id) AS cost_id,

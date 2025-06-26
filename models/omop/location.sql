@@ -16,7 +16,28 @@ MODEL (
     latitude REAL,
     longitude REAL
   ),
-  column_descriptions (location_id = 'A unique identifier for each location.', address_1 = 'The first line of the street address.', address_2 = 'The second line of the street address.', city = 'The city of the location.', state = 'The state or province of the location.', zip = 'The postal code of the location.', county = 'The county of the location.', location_source_value = 'The source identifier for the location.', country_concept_id = 'A foreign key to the Concept for the country.', country_source_value = 'The source value for the country.', latitude = 'The latitude of the location.', longitude = 'The longitude of the location.')
+  column_descriptions (
+    location_id = 'A unique identifier for each location.',
+    address_1 = 'The first line of the street address.',
+    address_2 = 'The second line of the street address.',
+    city = 'The city of the location.',
+    state = 'The state or province of the location.',
+    zip = 'The postal code of the location.',
+    county = 'The county of the location.',
+    location_source_value = 'The source identifier for the location.',
+    country_concept_id = 'A foreign key to the Concept for the country.',
+    country_source_value = 'The source value for the country.',
+    latitude = 'The latitude of the location.',
+    longitude = 'The longitude of the location.'
+  ),
+  audits (
+    location_country_concept_id_is_foreign_key,
+    location_country_concept_id_fk_domain,
+    location_country_concept_id_is_standard_valid_concept,
+    location_country_concept_id_standard_concept_record_completeness,
+    location_location_id_is_required,
+    location_location_id_is_primary_key
+  )
 );
 
 SELECT

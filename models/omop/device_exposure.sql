@@ -2,7 +2,7 @@ MODEL (
   name omop.device_exposure,
   kind FULL,
   cron '@daily',
-  description 'The Device domain captures information about a person’s exposure to a foreign physical object or instrument which is used for diagnostic or therapeutic purposes through a mechanism beyond chemical action.',
+  description "The Device domain captures information about a person's exposure to a foreign physical object or instrument which is used for diagnostic or therapeutic purposes through a mechanism beyond chemical action.",
   columns (
     device_exposure_id BIGINT,
     person_id BIGINT,
@@ -19,10 +19,62 @@ MODEL (
     visit_detail_id BIGINT,
     device_source_value TEXT,
     device_source_concept_id INT,
+    unit_concept_id INT,
     unit_source_value TEXT,
     unit_source_concept_id INT
   ),
-  column_descriptions (device_exposure_id = 'A unique identifier for each device exposure event.', person_id = 'A foreign key identifier to the Person who is subjected to the Device.', device_concept_id = 'A foreign key to a Standard Concept identifier in the Standardized Vocabularies for the Device.', device_exposure_start_date = 'The date when the Person was first exposed to the Device.', device_exposure_start_datetime = 'The date and time when the Person was first exposed to the Device.', device_exposure_end_date = 'The date when the Person stopped being exposed to the Device.', device_exposure_end_datetime = 'The date and time when the Person stopped being exposed to the Device.', device_type_concept_id = 'A foreign key to a Standard Concept identifier in the Standardized Vocabularies defining the type of source data from which the record originates.', unique_device_id = 'The Unique Device Identifier (UDI) of the Device.', quantity = 'The number of Devices the Person was exposed to.', provider_id = 'A foreign key to the provider in the PROVIDER table who was responsible for the administration of the Device.', visit_occurrence_id = 'A foreign key to the Visit in the VISIT_OCCURRENCE table during which the Device was first used or administered.', visit_detail_id = 'A foreign key to the Visit Detail in the VISIT_DETAIL table during which the Device was first used or administered.', device_source_value = 'The source code for the Device as it appears in the source data.', device_source_concept_id = 'A foreign key to a Concept that refers to the code used in the source.', unit_source_value = 'The source value for the quantity unit.', unit_source_concept_id = 'A foreign key to the concept for the quantity unit.'),
+  column_descriptions (
+    device_exposure_id = 'A unique identifier for each device exposure event.',
+    person_id = 'A foreign key identifier to the Person who is subjected to the Device.',
+    device_concept_id = 'A foreign key to a Standard Concept identifier in the Standardized Vocabularies for the Device.',
+    device_exposure_start_date = 'The date when the Person was first exposed to the Device.',
+    device_exposure_start_datetime = 'The date and time when the Person was first exposed to the Device.',
+    device_exposure_end_date = 'The date when the Person stopped being exposed to the Device.',
+    device_exposure_end_datetime = 'The date and time when the Person stopped being exposed to the Device.',
+    device_type_concept_id = 'A foreign key to a Standard Concept identifier in the Standardized Vocabularies defining the type of source data from which the record originates.',
+    unique_device_id = 'The Unique Device Identifier (UDI) of the Device.',
+    quantity = 'The number of Devices the Person was exposed to.',
+    provider_id = 'A foreign key to the provider in the PROVIDER table who was responsible for the administration of the Device.',
+    visit_occurrence_id = 'A foreign key to the Visit in the VISIT_OCCURRENCE table during which the Device was first used or administered.',
+    visit_detail_id = 'A foreign key to the Visit Detail in the VISIT_DETAIL table during which the Device was first used or administered.',
+    device_source_value = 'The source code for the Device as it appears in the source data.',
+    device_source_concept_id = 'A foreign key to a Concept that refers to the code used in the source.',
+    unit_source_value = 'The source value for the quantity unit.',
+    unit_source_concept_id = 'A foreign key to the concept for the quantity unit.'
+  ),
+  audits (
+    person_completeness_device_exposure,
+    device_exposure_device_concept_id_is_required,
+    device_exposure_device_concept_id_is_foreign_key,
+    device_exposure_device_concept_id_fk_domain,
+    device_exposure_device_concept_id_is_standard_valid_concept,
+    device_exposure_device_concept_id_standard_concept_record_completeness,
+    device_exposure_device_exposure_end_date_after_birth,
+    device_exposure_device_exposure_end_datetime_after_birth,
+    device_exposure_device_exposure_id_is_required,
+    device_exposure_device_exposure_id_is_primary_key,
+    device_exposure_device_exposure_start_date_is_required,
+    device_exposure_device_exposure_start_date_start_before_end,
+    device_exposure_device_exposure_start_date_after_birth,
+    device_exposure_device_exposure_start_datetime_start_before_end,
+    device_exposure_device_exposure_start_datetime_after_birth,
+    device_exposure_device_source_concept_id_is_foreign_key,
+    device_exposure_device_type_concept_id_is_required,
+    device_exposure_device_type_concept_id_is_foreign_key,
+    device_exposure_device_type_concept_id_fk_domain,
+    device_exposure_device_type_concept_id_is_standard_valid_concept,
+    device_exposure_device_type_concept_id_standard_concept_record_completeness,
+    device_exposure_person_id_is_required,
+    device_exposure_person_id_is_foreign_key,
+    device_exposure_provider_id_is_foreign_key,
+    device_exposure_unit_concept_id_is_foreign_key,
+    device_exposure_unit_concept_id_fk_domain,
+    device_exposure_unit_concept_id_is_standard_valid_concept,
+    device_exposure_unit_concept_id_standard_concept_record_completeness,
+    device_exposure_unit_source_concept_id_is_foreign_key,
+    device_exposure_visit_detail_id_is_foreign_key,
+    device_exposure_visit_occurrence_id_is_foreign_key
+  ),
   dialect 'duckdb'
 );
 
@@ -43,6 +95,7 @@ SELECT
   vd.visit_detail_id,
   d.device_code AS device_source_value,
   srctosrcvm.source_concept_id AS device_source_concept_id,
+  NULL::INT AS unit_concept_id,
   NULL::TEXT AS unit_source_value,
   NULL::INT AS unit_source_concept_id
 FROM stg.synthea__devices AS d
@@ -54,8 +107,7 @@ INNER JOIN int.source_to_standard_vocab_map AS srctostdvm
   AND srctostdvm.target_standard_concept = 'S'
   AND srctostdvm.target_invalid_reason IS NULL
 INNER JOIN int.source_to_source_vocab_map AS srctosrcvm
-  ON d.device_code = srctosrcvm.source_code
-  AND srctosrcvm.source_vocabulary_id = 'SNOMED'
+  ON d.device_code = srctosrcvm.source_code AND srctosrcvm.source_vocabulary_id = 'SNOMED'
 INNER JOIN int.person AS p
   ON d.patient_id = p.person_source_value
 LEFT JOIN int.visit_detail AS vd
