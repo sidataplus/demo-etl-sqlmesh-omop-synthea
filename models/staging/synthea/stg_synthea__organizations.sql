@@ -15,7 +15,19 @@ MODEL (
     organization_revenue DOUBLE,
     organization_utilization INT
   ),
-  column_descriptions (organization_id = 'Unique identifier for the organization.', organization_name = 'Name of the organization.', organization_address = 'Address of the organization.', organization_city = 'City of the organization.', organization_state = 'State of the organization.', organization_zip = 'ZIP code of the organization.', organization_latitude = 'Latitude of the organization.', organization_longitude = 'Longitude of the organization.', organization_phone = 'Phone number of the organization.', organization_revenue = 'The monetary revenue of the organization during the entire simulation.', organization_utilization = 'The number of Encounters performed by this Organization.')
+  column_descriptions (
+    organization_id = 'Unique identifier for the organization.',
+    organization_name = 'Name of the organization.',
+    organization_address = 'Address of the organization.',
+    organization_city = 'City of the organization.',
+    organization_state = 'State of the organization.',
+    organization_zip = 'ZIP code of the organization.',
+    organization_latitude = 'Latitude of the organization.',
+    organization_longitude = 'Longitude of the organization.',
+    organization_phone = 'Phone number of the organization.',
+    organization_revenue = 'The monetary revenue of the organization during the entire simulation.',
+    organization_utilization = 'The number of Encounters performed by this Organization.'
+  )
 );
 
 SELECT

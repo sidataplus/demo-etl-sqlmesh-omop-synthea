@@ -9,7 +9,13 @@ MODEL (
     vocabulary_version TEXT,
     vocabulary_concept_id INT
   ),
-  column_descriptions (vocabulary_id = 'A unique identifier for the Vocabulary.', vocabulary_name = 'The name of the Vocabulary.', vocabulary_reference = 'A reference to the source of the Vocabulary, such as a URL.', vocabulary_version = 'The version of the Vocabulary.', vocabulary_concept_id = 'A foreign key to the Concept table for the Vocabulary Concept itself.')
+  column_descriptions (
+    vocabulary_id = 'A unique identifier for the Vocabulary.',
+    vocabulary_name = 'The name of the Vocabulary.',
+    vocabulary_reference = 'A reference to the source of the Vocabulary, such as a URL.',
+    vocabulary_version = 'The version of the Vocabulary.',
+    vocabulary_concept_id = 'A foreign key to the Concept table for the Vocabulary Concept itself.'
+  )
 );
 
 SELECT

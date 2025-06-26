@@ -10,7 +10,14 @@ MODEL (
     immunization_description TEXT,
     immunization_base_cost DOUBLE
   ),
-  column_descriptions (immunization_date = 'The date of the immunization.', patient_id = 'The patient ID.', encounter_id = 'The encounter ID.', immunization_code = 'The immunization code.', immunization_description = 'The immunization description.', immunization_base_cost = 'The line item cost of the immunization.')
+  column_descriptions (
+    immunization_date = 'The date of the immunization.',
+    patient_id = 'The patient ID.',
+    encounter_id = 'The encounter ID.',
+    immunization_code = 'The immunization code.',
+    immunization_description = 'The immunization description.',
+    immunization_base_cost = 'The line item cost of the immunization.'
+  )
 );
 
 SELECT

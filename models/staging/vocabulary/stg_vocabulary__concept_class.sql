@@ -7,7 +7,11 @@ MODEL (
     concept_class_name TEXT,
     concept_class_concept_id INT
   ),
-  column_descriptions (concept_class_id = 'A unique identifier for the Concept Class.', concept_class_name = 'The name of the Concept Class.', concept_class_concept_id = 'A foreign key to the Concept table for the Concept Class itself.')
+  column_descriptions (
+    concept_class_id = 'A unique identifier for the Concept Class.',
+    concept_class_name = 'The name of the Concept Class.',
+    concept_class_concept_id = 'A foreign key to the Concept table for the Concept Class itself.'
+  )
 );
 
 SELECT

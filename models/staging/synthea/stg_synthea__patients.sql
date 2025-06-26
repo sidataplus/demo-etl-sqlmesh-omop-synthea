@@ -29,7 +29,33 @@ MODEL (
     healthcare_expenses DOUBLE,
     healthcare_coverage DOUBLE
   ),
-  column_descriptions (patient_id = 'Unique identifier for the patient.', birth_date = "The patient\'s date of birth.", death_date = "The patient\'s date of death, if applicable.", ssn = 'Social Security Number.', drivers_license_number = "Driver\'s license number.", passport_number = 'Passport number.', patient_prefix = 'Name prefix, such as Mr., Mrs., Dr., etc.', patient_first_name = "Patient\'s first name.", patient_last_name = "Patient\'s last name.", patient_suffix = 'Name suffix, such as PhD, MD, JD, etc.', maiden_name = "Patient\'s maiden name.", marital_status = 'Marital Status. M is married, S is single.', race = "Text description of patient\'s primary race.", ethnicity = "Text description of patient\'s primary ethnicity.", patient_gender = 'Gender. M is male, F is female.', birthplace = 'Name of the town where the patient was born.', patient_address = "Patient\'s street address.", patient_city = "Patient\'s city.", patient_state = "Patient\'s state.", patient_county = "Patient\'s county.", patient_zip = "Patient\'s ZIP code.", patient_latitude = "Patient\'s latitude.", patient_longitude = "Patient\'s longitude.", healthcare_expenses = 'The total lifetime cost of healthcare to the patient.', healthcare_coverage = 'The total lifetime cost of healthcare services that were covered by Payers.')
+  column_descriptions (
+    patient_id = 'Unique identifier for the patient.',
+    birth_date = "The patient\'s date of birth.",
+    death_date = "The patient\'s date of death, if applicable.",
+    ssn = 'Social Security Number.',
+    drivers_license_number = "Driver\'s license number.",
+    passport_number = 'Passport number.',
+    patient_prefix = 'Name prefix, such as Mr., Mrs., Dr., etc.',
+    patient_first_name = "Patient\'s first name.",
+    patient_last_name = "Patient\'s last name.",
+    patient_suffix = 'Name suffix, such as PhD, MD, JD, etc.',
+    maiden_name = "Patient\'s maiden name.",
+    marital_status = 'Marital Status. M is married, S is single.',
+    race = "Text description of patient\'s primary race.",
+    ethnicity = "Text description of patient\'s primary ethnicity.",
+    patient_gender = 'Gender. M is male, F is female.',
+    birthplace = 'Name of the town where the patient was born.',
+    patient_address = "Patient\'s street address.",
+    patient_city = "Patient\'s city.",
+    patient_state = "Patient\'s state.",
+    patient_county = "Patient\'s county.",
+    patient_zip = "Patient\'s ZIP code.",
+    patient_latitude = "Patient\'s latitude.",
+    patient_longitude = "Patient\'s longitude.",
+    healthcare_expenses = 'The total lifetime cost of healthcare to the patient.',
+    healthcare_coverage = 'The total lifetime cost of healthcare services that were covered by Payers.'
+  )
 );
 
 SELECT

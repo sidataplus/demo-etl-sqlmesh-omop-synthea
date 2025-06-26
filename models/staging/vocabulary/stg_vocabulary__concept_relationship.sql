@@ -10,7 +10,14 @@ MODEL (
     valid_end_date DATE,
     invalid_reason TEXT
   ),
-  column_descriptions (concept_id_1 = 'A foreign key to the Concept table for the first Concept in the relationship.', concept_id_2 = 'A foreign key to the Concept table for the second Concept in the relationship.', relationship_id = 'A foreign key to the Relationship table defining the nature of the relationship.', valid_start_date = 'The date when the relationship was first recorded.', valid_end_date = 'The date when the relationship became invalid because it was deleted or superseded.', invalid_reason = 'Reason the relationship was invalidated. Possible values are D (deleted), U (updated), or empty for valid relationships.')
+  column_descriptions (
+    concept_id_1 = 'A foreign key to the Concept table for the first Concept in the relationship.',
+    concept_id_2 = 'A foreign key to the Concept table for the second Concept in the relationship.',
+    relationship_id = 'A foreign key to the Relationship table defining the nature of the relationship.',
+    valid_start_date = 'The date when the relationship was first recorded.',
+    valid_end_date = 'The date when the relationship became invalid because it was deleted or superseded.',
+    invalid_reason = 'Reason the relationship was invalidated. Possible values are D (deleted), U (updated), or empty for valid relationships.'
+  )
 );
 
 SELECT

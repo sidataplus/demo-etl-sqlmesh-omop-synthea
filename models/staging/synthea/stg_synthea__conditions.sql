@@ -10,7 +10,14 @@ MODEL (
     condition_code TEXT,
     condition_description TEXT
   ),
-  column_descriptions (condition_start_date = 'The date the condition started.', condition_stop_date = 'The date the condition ended, if applicable.', patient_id = 'The patient ID.', encounter_id = 'The encounter ID.', condition_code = 'The condition code.', condition_description = 'The condition description.')
+  column_descriptions (
+    condition_start_date = 'The date the condition started.',
+    condition_stop_date = 'The date the condition ended, if applicable.',
+    patient_id = 'The patient ID.',
+    encounter_id = 'The encounter ID.',
+    condition_code = 'The condition code.',
+    condition_description = 'The condition description.'
+  )
 );
 
 SELECT

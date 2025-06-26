@@ -24,7 +24,28 @@ MODEL (
     qols_avg DOUBLE,
     payer_member_months INT
   ),
-  column_descriptions (payer_id = 'Unique identifier for the payer.', payer_name = 'Name of the payer.', payer_city = 'City of the payer.', payer_state_headquartered = 'State where the payer is headquartered.', payer_zip = 'ZIP code of the payer.', payer_phone = 'Phone number of the payer.', payer_amount_covered = 'The monetary amount paid to Organizations during the entire simulation.', payer_amount_uncovered = 'The monetary amount not paid to Organizations during the entire simulation, and covered out of pocket by patients.', payer_revenue = 'The monetary revenue of the payer during the entire simulation.', covered_encounters = 'The number of Encounters paid for by this Payer.', uncovered_encounters = 'The number of Encounters not paid for by this Payer, and paid out of pocket by patients.', covered_medications = 'The number of Medications paid for by this Payer.', uncovered_medications = 'The number of Medications not paid for by this Payer, and paid out of pocket by patients.', covered_procedures = 'The number of Procedures paid for by this Payer.', uncovered_procedures = 'The number of Procedures not paid for by this Payer, and paid out of pocket by patients.', covered_immunizations = 'The number of Immunizations paid for by this Payer.', uncovered_immunizations = 'The number of Immunizations not paid for by this Payer, and paid out of pocket by patients.', unique_customers = 'The number of unique patients enrolled with this Payer during the entire simulation.', qols_avg = 'The average Quality of Life Scores (QOLS) for all patients enrolled with this Payer during the entire simulation.', payer_member_months = 'The total number of months that patients were enrolled with this Payer during the simulation.')
+  column_descriptions (
+    payer_id = 'Unique identifier for the payer.',
+    payer_name = 'Name of the payer.',
+    payer_city = 'City of the payer.',
+    payer_state_headquartered = 'State where the payer is headquartered.',
+    payer_zip = 'ZIP code of the payer.',
+    payer_phone = 'Phone number of the payer.',
+    payer_amount_covered = 'The monetary amount paid to Organizations during the entire simulation.',
+    payer_amount_uncovered = 'The monetary amount not paid to Organizations during the entire simulation, and covered out of pocket by patients.',
+    payer_revenue = 'The monetary revenue of the payer during the entire simulation.',
+    covered_encounters = 'The number of Encounters paid for by this Payer.',
+    uncovered_encounters = 'The number of Encounters not paid for by this Payer, and paid out of pocket by patients.',
+    covered_medications = 'The number of Medications paid for by this Payer.',
+    uncovered_medications = 'The number of Medications not paid for by this Payer, and paid out of pocket by patients.',
+    covered_procedures = 'The number of Procedures paid for by this Payer.',
+    uncovered_procedures = 'The number of Procedures not paid for by this Payer, and paid out of pocket by patients.',
+    covered_immunizations = 'The number of Immunizations paid for by this Payer.',
+    uncovered_immunizations = 'The number of Immunizations not paid for by this Payer, and paid out of pocket by patients.',
+    unique_customers = 'The number of unique patients enrolled with this Payer during the entire simulation.',
+    qols_avg = 'The average Quality of Life Scores (QOLS) for all patients enrolled with this Payer during the entire simulation.',
+    payer_member_months = 'The total number of months that patients were enrolled with this Payer during the simulation.'
+  )
 );
 
 SELECT

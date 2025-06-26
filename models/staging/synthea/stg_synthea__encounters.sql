@@ -21,7 +21,25 @@ MODEL (
     encounter_reason_code TEXT,
     encounter_reason_description TEXT
   ),
-  column_descriptions (encounter_id = 'Unique identifier for the encounter.', encounter_start_datetime = 'The start date and time of the encounter.', encounter_start_date = 'The start date of the encounter.', encounter_stop_datetime = 'The stop date and time of the encounter.', encounter_stop_date = 'The stop date of the encounter.', patient_id = 'The patient ID.', organization_id = 'The organization ID.', provider_id = 'The provider ID.', payer_id = 'The payer ID.', encounter_class = 'The class of the encounter, such as ambulatory, emergency, inpatient, wellness, or urgentcare.', encounter_code = 'The encounter code.', encounter_description = 'The encounter description.', base_encounter_cost = 'The base cost of the encounter.', total_encounter_cost = 'The total cost of the encounter.', encounter_payer_coverage = 'The amount of cost covered by the payer.', encounter_reason_code = 'Diagnosis code from SNOMED-CT, only if this encounter targeted a specific condition.', encounter_reason_description = 'Description of the reason code.')
+  column_descriptions (
+    encounter_id = 'Unique identifier for the encounter.',
+    encounter_start_datetime = 'The start date and time of the encounter.',
+    encounter_start_date = 'The start date of the encounter.',
+    encounter_stop_datetime = 'The stop date and time of the encounter.',
+    encounter_stop_date = 'The stop date of the encounter.',
+    patient_id = 'The patient ID.',
+    organization_id = 'The organization ID.',
+    provider_id = 'The provider ID.',
+    payer_id = 'The payer ID.',
+    encounter_class = 'The class of the encounter, such as ambulatory, emergency, inpatient, wellness, or urgentcare.',
+    encounter_code = 'The encounter code.',
+    encounter_description = 'The encounter description.',
+    base_encounter_cost = 'The base cost of the encounter.',
+    total_encounter_cost = 'The total cost of the encounter.',
+    encounter_payer_coverage = 'The amount of cost covered by the payer.',
+    encounter_reason_code = 'Diagnosis code from SNOMED-CT, only if this encounter targeted a specific condition.',
+    encounter_reason_description = 'Description of the reason code.'
+  )
 );
 
 SELECT

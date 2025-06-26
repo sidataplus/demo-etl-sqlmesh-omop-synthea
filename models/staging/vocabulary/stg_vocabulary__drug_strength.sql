@@ -16,7 +16,20 @@ MODEL (
     valid_end_date DATE,
     invalid_reason TEXT
   ),
-  column_descriptions (drug_concept_id = 'A foreign key to the Concept table for the drug Concept.', ingredient_concept_id = 'A foreign key to the Concept table for the ingredient Concept.', amount_value = 'The amount value of the ingredient strength.', amount_unit_concept_id = 'A foreign key to the Concept table for the unit of the amount value.', numerator_value = 'The strength of the drug as a concentration. This value applies to liquids and inhalants.', numerator_unit_concept_id = 'A foreign key to the Concept table for the unit of the numerator value.', denominator_value = 'The strength of the drug as a concentration. This value applies to liquids and inhalants.', denominator_unit_concept_id = 'A foreign key to the Concept table for the unit of the denominator value.', box_size = 'The number of units in the drug product, e.g. the number of tablets in a bottle.', valid_start_date = 'The date when the Drug Strength record was first recorded.', valid_end_date = 'The date when the Drug Strength record became invalid.', invalid_reason = 'Reason the Drug Strength record was invalidated. Possible values are D (deleted), U (updated), or empty for valid records.')
+  column_descriptions (
+    drug_concept_id = 'A foreign key to the Concept table for the drug Concept.',
+    ingredient_concept_id = 'A foreign key to the Concept table for the ingredient Concept.',
+    amount_value = 'The amount value of the ingredient strength.',
+    amount_unit_concept_id = 'A foreign key to the Concept table for the unit of the amount value.',
+    numerator_value = 'The strength of the drug as a concentration. This value applies to liquids and inhalants.',
+    numerator_unit_concept_id = 'A foreign key to the Concept table for the unit of the numerator value.',
+    denominator_value = 'The strength of the drug as a concentration. This value applies to liquids and inhalants.',
+    denominator_unit_concept_id = 'A foreign key to the Concept table for the unit of the denominator value.',
+    box_size = 'The number of units in the drug product, e.g. the number of tablets in a bottle.',
+    valid_start_date = 'The date when the Drug Strength record was first recorded.',
+    valid_end_date = 'The date when the Drug Strength record became invalid.',
+    invalid_reason = 'Reason the Drug Strength record was invalidated. Possible values are D (deleted), U (updated), or empty for valid records.'
+  )
 );
 
 SELECT

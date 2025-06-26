@@ -10,7 +10,14 @@ MODEL (
     supply_description TEXT,
     supply_quantity INT
   ),
-  column_descriptions (supply_date = 'The date the supply was provided.', patient_id = 'The patient ID.', encounter_id = 'The encounter ID.', supply_code = 'The supply code.', supply_description = 'The supply description.', supply_quantity = 'The quantity of the supply.')
+  column_descriptions (
+    supply_date = 'The date the supply was provided.',
+    patient_id = 'The patient ID.',
+    encounter_id = 'The encounter ID.',
+    supply_code = 'The supply code.',
+    supply_description = 'The supply description.',
+    supply_quantity = 'The quantity of the supply.'
+  )
 );
 
 SELECT

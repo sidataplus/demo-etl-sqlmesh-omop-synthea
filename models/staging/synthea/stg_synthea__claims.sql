@@ -35,7 +35,39 @@ MODEL (
     claim_type_id_1 INT,
     claim_type_id_2 INT
   ),
-  column_descriptions (claim_id = 'Unique identifier for the claim.', patient_id = 'The patient ID.', provider_id = 'The provider ID.', primary_patient_insurance_id = 'The primary payer ID.', secondary_patient_insurance_id = 'The secondary payer ID.', department_id = 'Department ID.', patient_department_id = 'Patient department ID.', diagnosis_1 = 'Diagnosis code 1.', diagnosis_2 = 'Diagnosis code 2.', diagnosis_3 = 'Diagnosis code 3.', diagnosis_4 = 'Diagnosis code 4.', diagnosis_5 = 'Diagnosis code 5.', diagnosis_6 = 'Diagnosis code 6.', diagnosis_7 = 'Diagnosis code 7.', diagnosis_8 = 'Diagnosis code 8.', referring_provider_id = 'The referring provider ID.', encounter_id = 'The encounter ID.', current_illness_date = 'The date the patient experienced symptoms.', service_datetime = 'The date of the services on the claim.', supervising_provider_id = 'The supervising provider ID.', claim_status_1 = 'Status of the claim from the Primary Insurance. BILLED or CLOSED.', claim_status_2 = 'Status of the claim from the Secondary Insurance. BILLED or CLOSED.', claim_status_patient = 'Status of the claim from the Patient. BILLED or CLOSED.', outstanding_1 = 'Total amount of money owed by Primary Insurance.', outstanding_2 = 'Total amount of money owed by Secondary Insurance.', outstanding_patient = 'Total amount of money owed by Patient.', last_billed_date_1 = 'Date the claim was sent to Primary Insurance.', last_billed_date_2 = 'Date the claim was sent to Secondary Insurance.', last_billed_date_patient = 'Date the claim was sent to Patient.', claim_type_id_1 = 'Type of claim: 1 is professional, 2 is institutional.', claim_type_id_2 = 'Type of claim: 1 is professional, 2 is institutional.')
+  column_descriptions (
+    claim_id = 'Unique identifier for the claim.',
+    patient_id = 'The patient ID.',
+    provider_id = 'The provider ID.',
+    primary_patient_insurance_id = 'The primary payer ID.',
+    secondary_patient_insurance_id = 'The secondary payer ID.',
+    department_id = 'Department ID.',
+    patient_department_id = 'Patient department ID.',
+    diagnosis_1 = 'Diagnosis code 1.',
+    diagnosis_2 = 'Diagnosis code 2.',
+    diagnosis_3 = 'Diagnosis code 3.',
+    diagnosis_4 = 'Diagnosis code 4.',
+    diagnosis_5 = 'Diagnosis code 5.',
+    diagnosis_6 = 'Diagnosis code 6.',
+    diagnosis_7 = 'Diagnosis code 7.',
+    diagnosis_8 = 'Diagnosis code 8.',
+    referring_provider_id = 'The referring provider ID.',
+    encounter_id = 'The encounter ID.',
+    current_illness_date = 'The date the patient experienced symptoms.',
+    service_datetime = 'The date of the services on the claim.',
+    supervising_provider_id = 'The supervising provider ID.',
+    claim_status_1 = 'Status of the claim from the Primary Insurance. BILLED or CLOSED.',
+    claim_status_2 = 'Status of the claim from the Secondary Insurance. BILLED or CLOSED.',
+    claim_status_patient = 'Status of the claim from the Patient. BILLED or CLOSED.',
+    outstanding_1 = 'Total amount of money owed by Primary Insurance.',
+    outstanding_2 = 'Total amount of money owed by Secondary Insurance.',
+    outstanding_patient = 'Total amount of money owed by Patient.',
+    last_billed_date_1 = 'Date the claim was sent to Primary Insurance.',
+    last_billed_date_2 = 'Date the claim was sent to Secondary Insurance.',
+    last_billed_date_patient = 'Date the claim was sent to Patient.',
+    claim_type_id_1 = 'Type of claim: 1 is professional, 2 is institutional.',
+    claim_type_id_2 = 'Type of claim: 1 is professional, 2 is institutional.'
+  )
 );
 
 SELECT

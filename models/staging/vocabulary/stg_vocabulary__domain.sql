@@ -7,7 +7,11 @@ MODEL (
     domain_name TEXT,
     domain_concept_id INT
   ),
-  column_descriptions (domain_id = 'A unique identifier for the Domain.', domain_name = 'The name of the Domain.', domain_concept_id = 'A foreign key to the Concept table for the domain Concept itself.')
+  column_descriptions (
+    domain_id = 'A unique identifier for the Domain.',
+    domain_name = 'The name of the Domain.',
+    domain_concept_id = 'A foreign key to the Concept table for the domain Concept itself.'
+  )
 );
 
 SELECT

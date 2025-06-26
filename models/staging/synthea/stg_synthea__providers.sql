@@ -16,7 +16,20 @@ MODEL (
     provider_longitude DOUBLE,
     provider_utilization INT
   ),
-  column_descriptions (provider_id = 'Unique identifier for the provider.', organization_id = 'The organization ID the provider belongs to.', provider_name = 'Name of the provider.', provider_gender = 'Gender of the provider.', provider_specialty = 'Specialty of the provider.', provider_address = 'Address of the provider.', provider_city = 'City of the provider.', provider_state = 'State of the provider.', provider_zip = 'ZIP code of the provider.', provider_latitude = 'Latitude of the provider.', provider_longitude = 'Longitude of the provider.', provider_utilization = 'The number of Encounters performed by this Provider.')
+  column_descriptions (
+    provider_id = 'Unique identifier for the provider.',
+    organization_id = 'The organization ID the provider belongs to.',
+    provider_name = 'Name of the provider.',
+    provider_gender = 'Gender of the provider.',
+    provider_specialty = 'Specialty of the provider.',
+    provider_address = 'Address of the provider.',
+    provider_city = 'City of the provider.',
+    provider_state = 'State of the provider.',
+    provider_zip = 'ZIP code of the provider.',
+    provider_latitude = 'Latitude of the provider.',
+    provider_longitude = 'Longitude of the provider.',
+    provider_utilization = 'The number of Encounters performed by this Provider.'
+  )
 );
 
 SELECT

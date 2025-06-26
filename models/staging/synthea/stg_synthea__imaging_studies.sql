@@ -17,7 +17,21 @@ MODEL (
     sop_description TEXT,
     imaging_procedure_code TEXT
   ),
-  column_descriptions (imaging_id = 'Unique identifier for the imaging study.', imaging_datetime = 'The date and time of the imaging study.', patient_id = 'The patient ID.', encounter_id = 'The encounter ID.', series_uid = 'Series UID.', bodysite_code = 'Bodysite code.', bodysite_description = 'Bodysite description.', modality_code = 'A DICOM-DCM code describing the method used to take the images.', modality_description = 'Modality description.', instance_uid = 'Instance UID.', sop_code = 'A DICOM-SOP code describing the Subject-Object Pair (SOP) that constitutes the image.', sop_description = 'SOP description.', imaging_procedure_code = 'Imaging procedure code.')
+  column_descriptions (
+    imaging_id = 'Unique identifier for the imaging study.',
+    imaging_datetime = 'The date and time of the imaging study.',
+    patient_id = 'The patient ID.',
+    encounter_id = 'The encounter ID.',
+    series_uid = 'Series UID.',
+    bodysite_code = 'Bodysite code.',
+    bodysite_description = 'Bodysite description.',
+    modality_code = 'A DICOM-DCM code describing the method used to take the images.',
+    modality_description = 'Modality description.',
+    instance_uid = 'Instance UID.',
+    sop_code = 'A DICOM-SOP code describing the Subject-Object Pair (SOP) that constitutes the image.',
+    sop_description = 'SOP description.',
+    imaging_procedure_code = 'Imaging procedure code.'
+  )
 );
 
 SELECT

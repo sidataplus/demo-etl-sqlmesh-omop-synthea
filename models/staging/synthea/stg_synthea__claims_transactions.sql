@@ -37,7 +37,41 @@ MODEL (
     provider_id TEXT,
     supervising_provider_id TEXT
   ),
-  column_descriptions (claim_transaction_id = 'Unique identifier for the claim transaction.', claim_id = 'The claim ID.', charge_id = 'Charge ID.', patient_id = 'The patient ID.', transaction_type = 'Type of claim transaction: charge, payment, adjustment, transferin, transferout.', transaction_amount = 'Dollar amount for a CHARGE or TRANSFERIN.', transaction_method = 'Payment made by CASH, CHECK, ECHECK, COPAY, SYSTEM (adjustments without payment), or CC (credit card).', transaction_from_date = 'Transaction start date.', transaction_to_date = 'Transaction end date.', place_of_service = 'Foreign key to the organization.', procedure_code = 'Procedure code.', procedure_code_modifier_1 = 'Procedure code modifier 1.', procedure_code_modifier_2 = 'Procedure code modifier 2.', claim_diagnosis_ref_1 = 'Number indicating which diagnosis code from the claim applies to this transaction, 1-8 are valid options.', claim_diagnosis_ref_2 = 'Number indicating which diagnosis code from the claim applies to this transaction, 1-8 are valid options.', claim_diagnosis_ref_3 = 'Number indicating which diagnosis code from the claim applies to this transaction, 1-8 are valid options.', claim_diagnosis_ref_4 = 'Number indicating which diagnosis code from the claim applies to this transaction, 1-8 are valid options.', service_units = 'Number of units of the service.', department_id = 'Department ID.', transaction_notes = 'Transaction notes.', per_unit_amount = 'Cost per unit.', transfer_out_id = 'If the transaction is a TRANSFERIN, the Charge ID of the corresponding TRANSFEROUT row.', transfer_type = '1 if transferred to the primary insurance, 2 if transferred to the secondary insurance, or p if transferred to the patient.', payments = 'Dollar amount of a payment for a PAYMENT row.', adjustments = 'Dollar amount of an adjustment for an ADJUSTMENT row.', transfers = 'Dollar amount of a transfer for a TRANSFERIN or TRANSFEROUT row.', outstanding = 'Dollar amount left unpaid after this transaction was applied.', encounter_id = 'Foreign key to the encounter.', claim_transaction_line_note = 'Claim transaction line note.', patient_insurance_id = 'Patient insurance ID.', fee_schedule_id = 'Fixed to 1.', provider_id = 'Foreign key to the provider.', supervising_provider_id = 'Foreign key to the supervising provider.')
+  column_descriptions (
+    claim_transaction_id = 'Unique identifier for the claim transaction.',
+    claim_id = 'The claim ID.',
+    charge_id = 'Charge ID.',
+    patient_id = 'The patient ID.',
+    transaction_type = 'Type of claim transaction: charge, payment, adjustment, transferin, transferout.',
+    transaction_amount = 'Dollar amount for a CHARGE or TRANSFERIN.',
+    transaction_method = 'Payment made by CASH, CHECK, ECHECK, COPAY, SYSTEM (adjustments without payment), or CC (credit card).',
+    transaction_from_date = 'Transaction start date.',
+    transaction_to_date = 'Transaction end date.',
+    place_of_service = 'Foreign key to the organization.',
+    procedure_code = 'Procedure code.',
+    procedure_code_modifier_1 = 'Procedure code modifier 1.',
+    procedure_code_modifier_2 = 'Procedure code modifier 2.',
+    claim_diagnosis_ref_1 = 'Number indicating which diagnosis code from the claim applies to this transaction, 1-8 are valid options.',
+    claim_diagnosis_ref_2 = 'Number indicating which diagnosis code from the claim applies to this transaction, 1-8 are valid options.',
+    claim_diagnosis_ref_3 = 'Number indicating which diagnosis code from the claim applies to this transaction, 1-8 are valid options.',
+    claim_diagnosis_ref_4 = 'Number indicating which diagnosis code from the claim applies to this transaction, 1-8 are valid options.',
+    service_units = 'Number of units of the service.',
+    department_id = 'Department ID.',
+    transaction_notes = 'Transaction notes.',
+    per_unit_amount = 'Cost per unit.',
+    transfer_out_id = 'If the transaction is a TRANSFERIN, the Charge ID of the corresponding TRANSFEROUT row.',
+    transfer_type = '1 if transferred to the primary insurance, 2 if transferred to the secondary insurance, or p if transferred to the patient.',
+    payments = 'Dollar amount of a payment for a PAYMENT row.',
+    adjustments = 'Dollar amount of an adjustment for an ADJUSTMENT row.',
+    transfers = 'Dollar amount of a transfer for a TRANSFERIN or TRANSFEROUT row.',
+    outstanding = 'Dollar amount left unpaid after this transaction was applied.',
+    encounter_id = 'Foreign key to the encounter.',
+    claim_transaction_line_note = 'Claim transaction line note.',
+    patient_insurance_id = 'Patient insurance ID.',
+    fee_schedule_id = 'Fixed to 1.',
+    provider_id = 'Foreign key to the provider.',
+    supervising_provider_id = 'Foreign key to the supervising provider.'
+  )
 );
 
 SELECT

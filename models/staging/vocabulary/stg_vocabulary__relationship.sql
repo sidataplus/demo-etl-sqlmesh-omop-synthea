@@ -10,7 +10,14 @@ MODEL (
     reverse_relationship_id TEXT,
     relationship_concept_id INT
   ),
-  column_descriptions (relationship_id = 'A unique identifier for the Relationship.', relationship_name = 'The text name or description of the Relationship.', is_hierarchical = 'Defines whether a relationship defines concepts into classes or hierarchies.', defines_ancestry = 'Defines whether a hierarchical relationship contributes to the concept_ancestor table.', reverse_relationship_id = 'A foreign key to the Relationship table identifying the reverse relationship.', relationship_concept_id = 'A foreign key to the Concept table identifying the relationship Concept.')
+  column_descriptions (
+    relationship_id = 'A unique identifier for the Relationship.',
+    relationship_name = 'The text name or description of the Relationship.',
+    is_hierarchical = 'Defines whether a relationship defines concepts into classes or hierarchies.',
+    defines_ancestry = 'Defines whether a hierarchical relationship contributes to the concept_ancestor table.',
+    reverse_relationship_id = 'A foreign key to the Relationship table identifying the reverse relationship.',
+    relationship_concept_id = 'A foreign key to the Concept table identifying the relationship Concept.'
+  )
 );
 
 SELECT

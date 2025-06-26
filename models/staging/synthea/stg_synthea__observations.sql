@@ -14,7 +14,18 @@ MODEL (
     observation_units TEXT,
     observation_value_type TEXT
   ),
-  column_descriptions (observation_datetime = 'The date and time of the observation.', observation_date = 'The date of the observation.', patient_id = 'The patient ID.', encounter_id = 'The encounter ID.', observation_category = 'The category of the observation.', observation_code = 'The observation code.', observation_description = 'The observation description.', observation_value = 'The value of the observation.', observation_units = 'The units of the observation value.', observation_value_type = 'The datatype of Value: text or numeric.')
+  column_descriptions (
+    observation_datetime = 'The date and time of the observation.',
+    observation_date = 'The date of the observation.',
+    patient_id = 'The patient ID.',
+    encounter_id = 'The encounter ID.',
+    observation_category = 'The category of the observation.',
+    observation_code = 'The observation code.',
+    observation_description = 'The observation description.',
+    observation_value = 'The value of the observation.',
+    observation_units = 'The units of the observation value.',
+    observation_value_type = 'The datatype of Value: text or numeric.'
+  )
 );
 
 SELECT

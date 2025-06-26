@@ -13,7 +13,17 @@ MODEL (
     device_description TEXT,
     udi TEXT
   ),
-  column_descriptions (device_start_datetime = 'The date and time the device was associated to the patient.', device_start_date = 'The date the device was associated to the patient.', device_stop_datetime = 'The date and time the device was removed, if applicable.', device_stop_date = 'The date the device was removed, if applicable.', patient_id = 'The patient ID.', encounter_id = 'The encounter ID.', device_code = 'The device code.', device_description = 'The device description.', udi = 'Unique Device Identifier.')
+  column_descriptions (
+    device_start_datetime = 'The date and time the device was associated to the patient.',
+    device_start_date = 'The date the device was associated to the patient.',
+    device_stop_datetime = 'The date and time the device was removed, if applicable.',
+    device_stop_date = 'The date the device was removed, if applicable.',
+    patient_id = 'The patient ID.',
+    encounter_id = 'The encounter ID.',
+    device_code = 'The device code.',
+    device_description = 'The device description.',
+    udi = 'Unique Device Identifier.'
+  )
 );
 
 SELECT

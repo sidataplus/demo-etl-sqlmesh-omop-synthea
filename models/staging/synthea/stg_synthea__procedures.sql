@@ -15,7 +15,19 @@ MODEL (
     procedure_reason_code TEXT,
     procedure_reason_description TEXT
   ),
-  column_descriptions (procedure_start_datetime = 'The start date and time of the procedure.', procedure_start_date = 'The start date of the procedure.', procedure_stop_datetime = 'The stop date and time of the procedure.', procedure_stop_date = 'The stop date of the procedure.', patient_id = 'The patient ID.', encounter_id = 'The encounter ID.', procedure_code = 'The procedure code.', procedure_description = 'The procedure description.', procedure_base_cost = 'The line item cost of the procedure.', procedure_reason_code = 'Diagnosis code from SNOMED-CT specifying why this procedure was performed.', procedure_reason_description = 'Description of the reason code.')
+  column_descriptions (
+    procedure_start_datetime = 'The start date and time of the procedure.',
+    procedure_start_date = 'The start date of the procedure.',
+    procedure_stop_datetime = 'The stop date and time of the procedure.',
+    procedure_stop_date = 'The stop date of the procedure.',
+    patient_id = 'The patient ID.',
+    encounter_id = 'The encounter ID.',
+    procedure_code = 'The procedure code.',
+    procedure_description = 'The procedure description.',
+    procedure_base_cost = 'The line item cost of the procedure.',
+    procedure_reason_code = 'Diagnosis code from SNOMED-CT specifying why this procedure was performed.',
+    procedure_reason_description = 'Description of the reason code.'
+  )
 );
 
 SELECT

@@ -7,7 +7,11 @@ MODEL (
     concept_synonym_name TEXT,
     language_concept_id INT
   ),
-  column_descriptions (concept_id = 'A foreign key to the Concept in which the synonym is used.', concept_synonym_name = 'The text of the synonym for the Concept.', language_concept_id = 'A foreign key to the Concept table defining the language of the synonym.')
+  column_descriptions (
+    concept_id = 'A foreign key to the Concept in which the synonym is used.',
+    concept_synonym_name = 'The text of the synonym for the Concept.',
+    language_concept_id = 'A foreign key to the Concept table defining the language of the synonym.'
+  )
 );
 
 SELECT
