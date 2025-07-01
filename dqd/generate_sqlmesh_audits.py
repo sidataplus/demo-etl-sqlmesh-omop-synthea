@@ -28,7 +28,7 @@ GENDER_MAP = {
 }
 # SQLMesh Audit configuration
 DIALECT = "duckdb"
-BLOCKING = "false"
+BLOCKING = "FALSE"
 # Default OMOP schema name
 SCHEMA = "omop"
 

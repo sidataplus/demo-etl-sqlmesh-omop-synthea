@@ -5,18 +5,25 @@ Quickstart demo to show how to use SQLMesh to ETL Synthea data to OMOP CDM.
 NOTICE: This demo heavily reuses code from [dbt-synthea](https://github.com/OHDSI/dbt-synthea) licensed under Apache-2.0 license.
 
 CAUTION: This demo is for educational purpose only. It is not intended to be used in production. Please do not use it in production without proper testing and validation.
-It was created for a demonstration in OHDSI APAC Scientific Forum on May 1, 2025 with heavy reliance on VS Code Copilot, so there are many inconsistencies and errors in the code.  
-
+It was created for a demonstration in [OHDSI APAC Scientific Forum on May 1, 2025](https://www.youtube.com/watch?v=J0_2hkXz-HY) with heavy reliance on VS Code Copilot, so there might be inconsistencies and errors in the code.  
 
 ---
 
-![based on true story](/cartoon.png)
+![based on true story](img/cartoon.png)
 
 What usually happens when we convert Hospital data to OMOP CDM is that we have a team that prepares the mapping document and hands it off to a developer. The developer is then left to figure out how to implement the mapping as ETL (Extract-transform-load) pipelines. This is where the fun begins.
 
 There are many ways to do this ETL. We could custom write code in SQL, R, Python, etc. If budget allows, some may use commercial ETL tools, but oftentimes involves a lot of GUI clicks like Microsoft SSIS.
 
 In the past few years, we have seen a rise of open-source ETL tools like dbt and SQLMesh that simplify the process of building ETL pipelines. They allow us to write SQL code to define the transformation logic and then run it on many database engines. They also provide features like testing, auditing, and documentation to make the process easier.
+
+Our team has used both dbt and SQLMesh and we have found that SQLMesh is more robust and easier to use. Key features that we like are:
+
+- **SQL Semantic Understanding:** Unlike dbt that just template text, SQLMesh parses and understands the SQL code itself. This allows it to catch bugs before a query is run on the database and to create detailed column-level lineage, tracking exactly how data flows and transforms.
+- **Virtual Data Environments:** It allows developers to safely work in isolated development environments without interfering with the production data, even while using the same physical database.
+- **Data Contracts & Audits:** SQLMesh can enforce data quality rules (audits) to ensure the transformations are complete and accurate before the data is promoted for use. If a transformation is incomplete, it blocks the flawed data from entering production.
+- **SQL Transpilation:** It can automatically translate SQL syntax between different database systems (e.g., from Microsoft SQL Server to DuckDB), which is invaluable for migrations and collaboration.
+- **Incremental Models:** For large datasets, SQLMesh can be configured to process only new or changed data, dramatically reducing run times from hours to minutes.
 
 ---
 
@@ -25,7 +32,7 @@ Please refer to more information at these links:
 - OHDSI APAC 2024 Poster titled [From dbt to SQLMesh: Enhancing OMOP CDM Data Conversion Efficiency](https://www.ohdsi.org/wp-content/uploads/2025/01/20_Nongnaphat-Wongpiyachai_From-dbt-to-SQLMesh.pdf) by Nongnaphat Wongpiyachai, Chinapat Onprasert, Sornchai Manosorn, Natthawut Adulyanukosol
 - <https://github.com/sidataplus/demo-etl-sqlmesh-omop>
 - <https://github.com/OHDSI/ETL-Synthea>
-- <https://sqlmesh.com> & <https://sqlmesh.readthedocs.io/en/stable/>
+- <https://sqlmesh.com>, [Documentation](https://sqlmesh.readthedocs.io/en/stable), [Feature comparisons with dbt](https://sqlmesh.readthedocs.io/en/stable/comparisons/#feature-comparisons)
 
 ## Prerequisites
 
@@ -93,7 +100,7 @@ MODEL (
 
 In this part, we will create staging models to transform the data from the seed models to the final models. The staging models will be used to clean and prepare the data for the final models. We will take the example scripts from the [dbt-synthea](https://github.com/OHDSI/dbt-synthea/blob/main/models/staging/synthea/stg_synthea__allergies.sql) and convert them to SQLMesh models.
 
-1. Create a new file `models/staging/synthea/stg_synthea__allergies.sql` with the following content :
+1. Create a new file [`models/staging/synthea/stg_synthea__allergies.sql`](models/staging/synthea/stg_synthea__allergies.sql) with the following content :
 
 ```sql
 MODEL (
@@ -165,11 +172,17 @@ Explanation of the code:
 
 2. We can run `sqlmesh plan dev` like earlier to apply local changes to the target environment, or use `sqlmesh ui` to interactively check the changes and apply them via the web UI.
 
+![SQLMESH UI: model](img/ui-model.png)
+*The model definition is shown in the UI along with its lineage.*
+
+![SQLMESH UI: plan](img/ui-plan.png)
+*The plan is shown in the UI for the target environment. You can apply the plan by clicking the "Apply Changes and Backfill" button.*
+
 ## Part 4: Intermediate models
 
 We can transform more data from the staging models before loading them into the final models. These transformations usually include data joining, filtering, aggregation, calculation and etc. The coding is similar to the staging models. In this demo, we will introduce the use of macros to reuse the code. Macros are reusable SQL snippets that can be used in multiple models. [SQLMesh supports Jinja macros](https://sqlmesh.readthedocs.io/en/stable/concepts/macros/jinja_macros/), similar to dbt. You can define macros in the `macros/` directory and use them in your models.
 
-1. Create a new file `macros/safe_hash.sql` with the following content:
+1. Create a new file [`macros/safe_hash.sql`](macros/safe_hash.sql) with the following content:
 
 ```sql
 {% macro safe_hash(columns) %}
@@ -184,7 +197,7 @@ We can transform more data from the staging models before loading them into the 
 
 This macro takes a list of columns and returns a MD5 hash of the concatenated values of the columns. It uses `COALESCE` to handle null values and `LOWER` to handle case sensitivity.
 
-2. Use the macro in a model. For example, `models/intermediate/int__location.sql`:
+2. Use the macro in a model. For example, [`models/intermediate/int__location.sql`](models/intermediate/int__location.sql):
 
 ```sql
 MODEL (
@@ -247,12 +260,11 @@ FROM unioned_location_sources
 JINJA_END;
 ```
 
-
 ## Part 5: Final OMOP models
 
 In this part, we will create the final models that will be used to load the data into the OMOP CDM. The final models will be used to transform the data from the intermediate models to the OMOP CDM format. We can specify the data types and column descriptions in the model definition. There are many properties that can be specified in the model definition. Please refer to the [SQLMesh documentation: Model configuration](https://sqlmesh.readthedocs.io/en/stable/reference/model_configuration/) for more information. 
 
-For example, `models/omop/person.sql`:
+For example, [`models/omop/person.sql`](models/omop/person.sql):
 
 ```sql
 MODEL (
@@ -328,11 +340,75 @@ FROM int.person;
 
 Notice the `grain` property for primary key and `audits` property for checking the model prior to downstream transformation.
 
+## Part 6: Audits
+
+SQLMesh provides an automatic command to validate the data quality of the models. It is called audits. You can define audits in the model definition.
+
+In this demo, we will use the rules from [Data Quality Dashboard (DQD)](https://github.com/OHDSI/DataQualityDashboard) to validate. We will use the [`dqd/generate_sqlmesh_audits.py`](dqd/generate_sqlmesh_audits.py) script to automatically parse the DQD CSV files and generate the audit definitions in SQLMesh format.
+
+1. Run `python dqd/generate_sqlmesh_audits.py dqd/csv --o ./audits` to generate the audit definitions in `audits/` directory.
+2. From the beginning of each file in `audits/`, copy the audit block and paste it into the model definition. For example, [`models/omop/person.sql`](models/omop/person.sql):
+
+```sql
+MODEL (
+  name omop.person,
+  kind FULL,
+  audits (
+    person_exists,
+    person_care_site_id_is_foreign_key,
+    person_ethnicity_concept_id_is_required,
+    person_ethnicity_concept_id_is_foreign_key,
+    person_ethnicity_concept_id_fk_domain,
+    person_ethnicity_concept_id_is_standard_valid_concept,
+    person_ethnicity_concept_id_standard_concept_record_completeness,
+    person_ethnicity_source_concept_id_is_foreign_key,
+    person_gender_concept_id_is_required,
+    person_gender_concept_id_is_foreign_key,
+    person_gender_concept_id_fk_domain,
+    person_gender_concept_id_is_standard_valid_concept,
+    person_gender_concept_id_standard_concept_record_completeness,
+    person_gender_source_concept_id_is_foreign_key,
+    person_location_id_is_foreign_key,
+    person_person_id_is_required,
+    person_person_id_is_primary_key,
+    person_provider_id_is_foreign_key,
+    person_race_concept_id_is_required,
+    person_race_concept_id_is_foreign_key,
+    person_race_concept_id_fk_domain,
+    person_race_concept_id_is_standard_valid_concept,
+    person_race_concept_id_standard_concept_record_completeness,
+    person_race_source_concept_id_is_foreign_key,
+    person_year_of_birth_is_required
+  )
+  -- ...continue with the rest of the model definition...
+);
+```
+
+3. The audits will be run automatically when you run `sqlmesh plan` or `sqlmesh run`. You can also run the audits manually with `sqlmesh audit`.
+
+Here is an example of the audit result:
+
+![Audit result](img/audit-result.png)
+
+From the result, we can see that 23 audits passed and 2 audits failed. We can see the SQL command that failed the audits in the logs. Then, we have to manually run the command on our database to investigate the issue. 
+
+*(As of this writing, SQLMesh does not have feature to show the audit result in a user-friendly way yet, but their team seems to be open for community contributions on [their GitHub repository](https://github.com/TobikoData/sqlmesh?tab=readme-ov-file#contribution).)*
+
+There are 2 types of audits:
+
+1. Blocking audits: These audits will block the downstream models from running if they fail. Consider this a fatal error for mandatory rules.
+2. Non-blocking audits: These audits will not block the downstream models from running if they fail. Consider this a warning for optional rules.
+
+Please refer to the [SQLMesh documentation: Audits](https://sqlmesh.readthedocs.io/en/stable/concepts/audits/) for more information.
+
 ## What's next?
 
 - Change model kind to `INCREMENTAL_BY_TIME_RANGE` or `INCREMENTAL_BY_UNIQUE_KEY` for large transformation
 - Add model cron tags and start/end dates to the models
-- Add [audits](https://sqlmesh.readthedocs.io/en/stable/concepts/audits) and [tests](https://sqlmesh.readthedocs.io/en/stable/concepts/tests/) to the models 
 - Run the models in production with `sqlmesh run`
+- Use [SQLMesh VS Code plugin](https://marketplace.visualstudio.com/items?itemName=tobikodata.sqlmesh) for intelligent code assistance, interactive lineage visualization, code formatting & quality, and more.
 - [CI/CD with GitHub Actions](https://sqlmesh.readthedocs.io/en/stable/integrations/github/)
 - many more...
+
+![SQLMesh VS Code plugin](img/vscode.png)
+*SQLMesh VS Code plugin showing the data lineage of person table along with the inferred data type of each column in the model definition.*
